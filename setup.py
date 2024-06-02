@@ -10,7 +10,7 @@ setup(
     name="xgrove",
     version=VERSION,
     author="Jean Jacques Berry",
-    author_email="<J.Jacques.Berry@gmail.com.com>",
+    author_email="<J.Jacques.Berry@gmail.com>",
     description=DESCRIPTION,
     packages=find_packages(),
     install_requires=[],
