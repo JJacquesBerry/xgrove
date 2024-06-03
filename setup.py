@@ -17,7 +17,7 @@ setup(
     keywords=['tree', 'model', 'grove', 'forest'],
     classifiers=[
         "Development Status :: 1 - Planning",
-        "Intended Audience :: Developers, Statisicians",
+        "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",
         "Operating System :: MacOS :: MacOS X",
