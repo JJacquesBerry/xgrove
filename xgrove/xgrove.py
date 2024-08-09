@@ -43,12 +43,15 @@ class xgrove():
         self.b_frac = b_frac,
         self.seed = seed,
         self.grove_rate = grove_rate
-        self.surrTar = self.getSurrogateTarget()
+        self.surrTar = self.getSurrogateTarget(pfun = self.pfun)
         self.surrGrove = self.getSurrogateGrove()
 
 # get-functions for class overarcing variables
-    def getSurrogateTarget(self):
-        target = self.model.predict(self.data)
+    def getSurrogateTarget(self, pfun = None):
+        if(self.pfun == None):
+            target = self.model.predict(self.data)
+        else:
+            target = pfun(model = self.model, data = self.data)
         return target
     
     def getSurrogateGrove(self):
@@ -56,6 +59,7 @@ class xgrove():
         return grove
 
     # calculate upsilon
+    # pexp = viewed predictive model
     def upsilon(self, pexp):
         ASE  = statistics.mean((self.surrTar-pexp)**2)
         ASE0 = statistics.mean((self.surrTar-statistics.mean(self.surrTar))**2)
