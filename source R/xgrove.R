@@ -116,6 +116,7 @@ xgrove <- function(model, data, ntrees = c(4,8,16,32,64,128), pfun = NULL, shrin
     pright <- NULL
 
     for(i in 1:nrow(rules)){
+      # columns?
       vars   <- c(vars,   names(data)[rules$SplitVar[i]+1])
       if(is.numeric(data[,rules$SplitVar[i]+1])){
         splits       <- c(splits, rules$SplitCodePred[i])
@@ -123,6 +124,7 @@ xgrove <- function(model, data, ntrees = c(4,8,16,32,64,128), pfun = NULL, shrin
       }
       if(is.factor(data[,rules$SplitVar[i]+1])){
         levs <- levels(data[,(rules$SplitVar[i]+1)])
+        # SplitCodePred = .threshold
         lids <- surrogate_grove$c.splits[[(rules$SplitCodePred[i] +1)]] == -1
         if(sum(lids) == 1) levs <- levs[lids]
         if(sum(lids) > 1)  levs <- paste(levs[lids], sep = "|")
@@ -140,16 +142,23 @@ xgrove <- function(model, data, ntrees = c(4,8,16,32,64,128), pfun = NULL, shrin
     df <- data.frame(vars, splits, left = csplits_left, pleft = round(pleft, 4), pright = round(pright,4))
     df <- dplyr::group_by(df, vars, splits, left)
     df_small <- as.data.frame(dplyr::summarise(df, pleft = sum(pleft), pright = sum(pright)))
+    #Nutzen?
     df <- as.data.frame(df)
     
     # merge rules for numeric variables 
+    # for every rule
     if(nrow(df_small) > 1){
       i <- 2
+      # every split
       while (i != 0){
         drop.rule <- FALSE  
+        # check if the variable is numeric
         if(is.numeric(data[,df_small$vars[i]])){
+          # for every node
           for(j in 1:(i-1)){
+            # if its the same variable
             if(df_small$vars[i] == df_small$vars[j]) {
+              # do something
               v1  <- data[,df_small$vars[i]] <= df_small$splits[i]
               v2  <- data[,df_small$vars[j]] <= df_small$splits[j]
               tab <- table(v1, v2)
