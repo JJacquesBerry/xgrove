@@ -37,13 +37,13 @@ class xgrove():
                  seed: int = 42,
                  grove_rate: float = 1,
                  ):
-        self.model = model,
-        self.data = self.encodeCategorical(),
-        self.ntrees = ntrees,
-        self.pfun = pfun,
-        self.shrink = shrink,
-        self.b_frac = b_frac,
-        self.seed = seed,
+        self.model = model
+        self.data = self.encodeCategorical()
+        self.ntrees = ntrees
+        self.pfun = pfun
+        self.shrink = shrink
+        self.b_frac = b_frac
+        self.seed = seed
         self.grove_rate = grove_rate
         self.surrTar = self.getSurrogateTarget(pfun = self.pfun)
         self.surrGrove = self.getGBM()
@@ -251,6 +251,109 @@ class xgrove():
 
         self.result = self.get_result()
         return(self.result)
+    # end of calculateGrove()
 
         # TODO explanation und interpretation füllen 
         # TODO add functionality of plot
+class sgtree():
+    def __init__(self, 
+                 model, 
+                 data: pd.DataFrame, 
+                 maxdeps: np.array = np.array(range(1,9)), 
+                 cparam = 0,
+                 pfun = None
+                 ):
+        self.model = model
+        self.data = self.encodeCategorical()
+        self.maxdeps = maxdeps
+        self.cparam = cparam
+        self.pfun = pfun
+        self.surrTar = self.getSurrogateTarget(pfun)
+        self.surrogate_trees = []
+        self.rules  = []
+        self.explanation = []   
+
+    def encodeCategorical(self):
+        categorical_columns = self.data.select_dtypes(include=['object', 'category']).columns
+        data_encoded = pd.get_dummies(data, columns=categorical_columns)
+        return data_encoded
+    
+    # compute surrogate grove for specified maximal number of trees
+    def getSurrogateTarget(self, pfun):
+        if(self.pfun == None):
+            self.surrTar = self.model.predict(self.data)
+        else:
+            self.surrTar = pfun(model = self.model, data = self.data)
+        
+    def calcusatesgtree(self):
+        surrogate_trees = []
+        surrogate_trees.index = str(self.maxdeps)
+        explanation = pd.DataFrame
+        explanation.columns = ["trees","rules","upsilon","cor"]
+        cat_col = []
+        num_col = []
+        for i in self.data.columns:    
+            if i.dtype == pd.Categorical or pd.api.types.is_string_dtype(i) or i.dtype == object:
+                cat_col.append(i)
+            # Numeric columns   
+            elif pd.api.types.is_numeric_dtype(i) or np.issubdtype(i.dtype, np.number):
+                num_col.append(i)
+            else:
+                print(i+": uncaught case please contact a dev")
+        
+        for md in self.maxdeps:
+    # min_samples_split = minsplit, min_samples_leaves = minbucket?
+            model = tree.DecisionTreeRegressor(max_depth=md, ccp_alpha=self.cparam, min_samples_split = 2, min_samples_leaf = 1).fit(X=self.data, y=self.surrTar)
+            t = model.tree_
+            features = t.feature
+            thresholds = t.threshold
+            rules = []
+            csplits_left = []
+            
+            for node in range(t.node_count):
+                ncat = 
+                # if it's not a leaf node save attributes to list object "rules"    
+                if features[node].dtype == pd.Categorical or pd.api.types.is_string_dtype(features[node]) or features[node].dtype == object:
+                    ncat.append(datafeatures[node])
+                # Numeric columns   
+                elif pd.api.types.is_numeric_dtype(features[node]) or np.issubdtype(features[node].dtype, np.number):
+                    ncat.append(-1)
+                else:
+                    print(i+": uncaught case please contact a dev")
+            
+                if features[node] != -2:
+                    rule = {
+                        # feature == var
+                        'feature': features[node],
+                        'threshold': thresholds[node],
+                        'pleft': t.value[t.children_left[node]][0][0],
+                        'pright': t.value[t.children_right[node]][0][0],
+                        'ncat': ncat
+                    }
+                    rules.append(rule)
+            rules_df = pd.DataFrame(rules)
+            
+            # surrogate_trees.append(pd.DataFrame(rules))
+
+            if len(surrogate_trees[md]) == 0:
+                explanation.append(pd.DataFrame({
+                        "trees": 1,
+                        "rules": 0,
+                        "upsilon": 0,
+                        "cor": 0
+                }))
+                surrogate_trees[md] = None
+
+            if len(surrogate_trees[md] > 0):
+                    # if t.node_count>1:
+
+                    md = md
+            
+        print(surrogate_trees)
+        # TODO: splits äquivalent finden
+    
+    
+    
+    
+
+    
