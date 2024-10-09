@@ -22,6 +22,7 @@ data = read_csv(r'C:\Users\jjacq\xgrove\data\HousingData.csv')
 # create dataframe 
 df = pd.DataFrame(data)
 
+# TODO: delete direct directory reference
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 
 class xgrove():
@@ -55,7 +56,7 @@ class xgrove():
     # get-functions for class overarching variables
     def getSurrogateTarget(self, pfun):
         if self.pfun is None:
-            target = self.model.predict(self.data)
+            target = self.model.predict(self.surrTar)
         else:
             target = pfun(model=self.model, data=self.data)
         return target
