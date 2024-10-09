@@ -38,7 +38,7 @@ class xgrove():
                  grove_rate: float = 1,
                  ):
         self.model = model
-        self.data = self.encodeCategorical()
+        self.data = self.encodeCategorical(data)
         self.ntrees = ntrees
         self.pfun = pfun
         self.shrink = shrink
@@ -52,48 +52,57 @@ class xgrove():
         self.rules = []
         self.result = []
 
-# get-functions for class overarcing variables
+    # get-functions for class overarching variables
     def getSurrogateTarget(self, pfun):
-        if(self.pfun == None):
+        if self.pfun is None:
             target = self.model.predict(self.data)
         else:
-            target = pfun(model = self.model, data = self.data)
+            target = pfun(model=self.model, data=self.data)
         return target
     
     def getGBM(self):
-
         grove = GradientBoostingRegressor(n_estimators=self.ntrees,
-        learning_rate=self.shrink,
-        subsample=self.b_frac)
+                                          learning_rate=self.shrink,
+                                          subsample=self.b_frac)
         return grove
+
     # OHE for evaluating categorical columns
-    def encodeCategorical(self):
-        categorical_columns = self.data.select_dtypes(include=['object', 'category']).columns
+    def encodeCategorical(self, data):
+        categorical_columns = data.select_dtypes(include=['object', 'category']).columns
         data_encoded = pd.get_dummies(data, columns=categorical_columns)
         return data_encoded
 
     # calculate upsilon
-    # pexp = viewed predictive model
     def upsilon(self, pexp):
-        ASE  = statistics.mean((self.surrTar-pexp)**2)
-        ASE0 = statistics.mean((self.surrTar-statistics.mean(self.surrTar))**2)
-        ups = 1 - ASE/ASE0
+        ASE = statistics.mean((self.surrTar - pexp) ** 2)
+        ASE0 = statistics.mean((self.surrTar - statistics.mean(self.surrTar)) ** 2)
+        ups = 1 - ASE / ASE0
         rho = statistics.correlation(self.surrTar, pexp)
         return ups, rho
-    
+
     def get_result(self):
         res = [self.explanation, self.rules, self.groves, self.model]
         return res
     
-# TODO define plot method for the Upsilon-Rules-Curve of the surrogate grove
-    def plot(x,
-             abs = "rules",
-             ord = "upsilon"):
-        abs = abs
-        ord = ord
-        return plt.plot()
-    
-    # compute performance and extract groves
+    # Plot method to visualize Upsilon vs. Rules
+    def plot(self, abs="rules", ord="upsilon"):
+        if len(self.explanation) == 0:
+            raise ValueError("No explanation data available. Please run the calculation first.")
+        
+        # Get the corresponding indices for the given abs (x-axis) and ord (y-axis)
+        x_col = self.explanation[abs] if abs in self.explanation.columns else None
+        y_col = self.explanation[ord] if ord in self.explanation.columns else None
+        
+        if x_col is None or y_col is None:
+            raise ValueError(f"Cannot find '{abs}' or '{ord}' in explanation columns.")
+        
+        # Plot the x and y values
+        plt.plot(x_col, y_col, marker='o', linestyle='-', color='b')
+        plt.xlabel(abs)
+        plt.ylabel(ord)
+        plt.title(f'{ord} vs {abs}')
+        plt.grid(True)
+        plt.show()
     def calculateGrove(self):
         explanation = []
         groves = []
@@ -264,96 +273,84 @@ class sgtree():
                  pfun = None
                  ):
         self.model = model
-        self.data = self.encodeCategorical()
+        self.data = self.encodeCategorical(data)
         self.maxdeps = maxdeps
         self.cparam = cparam
         self.pfun = pfun
         self.surrTar = self.getSurrogateTarget(pfun)
         self.surrogate_trees = []
-        self.rules  = []
-        self.explanation = []   
+        self.rules = []
+        self.explanation = []
 
-    def encodeCategorical(self):
-        categorical_columns = self.data.select_dtypes(include=['object', 'category']).columns
+    def encodeCategorical(self, data):
+        categorical_columns = data.select_dtypes(include=['object', 'category']).columns
         data_encoded = pd.get_dummies(data, columns=categorical_columns)
         return data_encoded
-    
-    # compute surrogate grove for specified maximal number of trees
+
     def getSurrogateTarget(self, pfun):
-        if(self.pfun == None):
+        if self.pfun is None:
             self.surrTar = self.model.predict(self.data)
         else:
-            self.surrTar = pfun(model = self.model, data = self.data)
-        
+            self.surrTar = pfun(model=self.model, data=self.data)
+        if not isinstance(self.surrTar, np.ndarray) or len(self.surrTar.shape) != 1:
+            raise ValueError("pfun does not return a numeric vector!")
+        return self.surrTar
+
+    def upsilon(self, pexp):
+        ASE  = statistics.mean((self.surrTar - pexp) ** 2)
+        ASE0 = statistics.mean((self.surrTar - statistics.mean(self.surrTar)) ** 2)
+        ups = 1 - ASE / ASE0
+        rho = statistics.correlation(self.surrTar, pexp)
+        return ups, rho
+
     def calcusatesgtree(self):
-        surrogate_trees = []
-        surrogate_trees.index = str(self.maxdeps)
-        explanation = pd.DataFrame
-        explanation.columns = ["trees","rules","upsilon","cor"]
-        cat_col = []
-        num_col = []
-        for i in self.data.columns:    
-            if i.dtype == pd.Categorical or pd.api.types.is_string_dtype(i) or i.dtype == object:
-                cat_col.append(i)
-            # Numeric columns   
-            elif pd.api.types.is_numeric_dtype(i) or np.issubdtype(i.dtype, np.number):
-                num_col.append(i)
-            else:
-                print(i+": uncaught case please contact a dev")
-        
         for md in self.maxdeps:
-    # min_samples_split = minsplit, min_samples_leaves = minbucket?
-            model = tree.DecisionTreeRegressor(max_depth=md, ccp_alpha=self.cparam, min_samples_split = 2, min_samples_leaf = 1).fit(X=self.data, y=self.surrTar)
+            model = tree.DecisionTreeRegressor(max_depth=md, ccp_alpha=self.cparam, min_samples_split=2, min_samples_leaf=1).fit(X=self.data, y=self.surrTar)
             t = model.tree_
             features = t.feature
             thresholds = t.threshold
             rules = []
-            csplits_left = []
             
             for node in range(t.node_count):
-                ncat = 
-                # if it's not a leaf node save attributes to list object "rules"    
-                if features[node].dtype == pd.Categorical or pd.api.types.is_string_dtype(features[node]) or features[node].dtype == object:
-                    ncat.append(datafeatures[node])
-                # Numeric columns   
-                elif pd.api.types.is_numeric_dtype(features[node]) or np.issubdtype(features[node].dtype, np.number):
-                    ncat.append(-1)
-                else:
-                    print(i+": uncaught case please contact a dev")
-            
-                if features[node] != -2:
+                ncat = []
+                if features[node] != -2:  # Check if it's not a leaf node
+                    if pd.api.types.is_string_dtype(self.data.iloc[:, features[node]]):
+                        ncat.append(len(self.data.iloc[:, features[node]].unique()))
+                    else:
+                        ncat.append(-1)
+
                     rule = {
-                        # feature == var
                         'feature': features[node],
                         'threshold': thresholds[node],
                         'pleft': t.value[t.children_left[node]][0][0],
                         'pright': t.value[t.children_right[node]][0][0],
-                        'ncat': ncat
+                        'ncat': ncat[0]
                     }
                     rules.append(rule)
+
             rules_df = pd.DataFrame(rules)
+            self.surrogate_trees.append(rules_df)
+
+            # Predict values for the current surrogate tree
+            predictions = model.predict(self.data)
             
-            # surrogate_trees.append(pd.DataFrame(rules))
+            # Call the upsilon method to compute upsilon and rho
+            upsilon_val, rho_val = self.upsilon(predictions)
 
-            if len(surrogate_trees[md]) == 0:
-                explanation.append(pd.DataFrame({
-                        "trees": 1,
-                        "rules": 0,
-                        "upsilon": 0,
-                        "cor": 0
-                }))
-                surrogate_trees[md] = None
+            explanation_entry = {
+                "trees": 1,
+                "rules": len(rules),
+                "upsilon": upsilon_val,
+                "cor": rho_val
+            }
+            self.explanation.append(explanation_entry)
 
-            if len(surrogate_trees[md] > 0):
-                    # if t.node_count>1:
-
-                    md = md
-            
-        print(surrogate_trees)
-        # TODO: splits äquivalent finden
-    
-    
-    
-    
-
-    
+    # Method to get the results (explanation, rules, and surrogate_trees)
+    def get_results(self):
+        results = {
+            "explanation": pd.DataFrame(self.explanation),
+            "rules": self.rules,
+            "surrogate_trees": self.surrogate_trees
+        }
+        return results
+        print(self.explanation)
