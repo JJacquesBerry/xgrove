@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '0.0.1'
+VERSION = '0.1.0'
 DESCRIPTION = 'creating and calculating groves of tree models'
 
 # Setting up
