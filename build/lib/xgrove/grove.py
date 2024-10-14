@@ -25,7 +25,7 @@ from sklearn.ensemble import GradientBoostingRegressor
 # TODO: delete direct directory reference
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 
-class xgrove():
+class grove():
     # define xgrove-class with default values
     # TODO add type check
     print("its upgraded")
