@@ -60,7 +60,7 @@ class xgrove():
     def getSurrogateTarget(self, pfun):
 
         if self.pfun is None:
-            target = self.model.predict(self.data.drop(self.surrTarName), self.data.loc[self.surrTarName])
+            target = self.model.predict(self.data.drop(self.surrTarName), self.data[self.surrTarName])
         else:
             # potentielle Fehlerquelle
             target = pfun(model=self.model, data=self.data)
