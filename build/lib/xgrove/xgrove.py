@@ -31,7 +31,8 @@ class xgrove():
     print("its upgraded")
     def __init__(self, 
                  model, 
-                 data: pd.DataFrame, 
+                 data: pd.DataFrame,
+                 surTarName: str, 
                  ntrees: np.array = np.array([4, 8, 16, 32, 64, 128]), 
                  pfun = None, 
                  shrink: int = 1, 
@@ -41,6 +42,7 @@ class xgrove():
                  ):
         self.model = model
         self.data = self.encodeCategorical(data)
+        self.surrTarName = surTarName
         self.ntrees = ntrees
         self.pfun = pfun
         self.shrink = shrink
@@ -56,9 +58,11 @@ class xgrove():
 
     # get-functions for class overarching variables
     def getSurrogateTarget(self, pfun):
+
         if self.pfun is None:
-            target = self.model.predict(self.surrTar)
+            target = self.model.predict(self.data.drop(self.surrTarName), self.data.loc[self.surrTarName])
         else:
+            # potentielle Fehlerquelle
             target = pfun(model=self.model, data=self.data)
         return target
     
