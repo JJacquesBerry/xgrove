@@ -2,6 +2,7 @@ LICENSE
 README.md
 setup.py
 xgrove/__init__.py
+xgrove/sgtree.py
 xgrove/xgrove.py
 xgrove.egg-info/PKG-INFO
 xgrove.egg-info/SOURCES.txt
