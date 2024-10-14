@@ -49,22 +49,33 @@ class grove():
         self.b_frac = b_frac
         self.seed = seed
         self.grove_rate = grove_rate
-        self.surrTar = self.getSurrogateTarget(pfun = self.pfun)
         self.surrGrove = self.getGBM()
+        self.surrTar = self.getSurrogateTarget(pfun = self.pfun)
         self.explanation = []
         self.groves = []
         self.rules = []
         self.result = []
 
     # get-functions for class overarching variables
+    
     def getSurrogateTarget(self, pfun):
-
+    # Überprüfen, ob pfun None ist
         if self.pfun is None:
-            target = self.model.fit(self.data.drop(self.surrTarName, axis=1), self.data[self.surrTarName])
+            # Dynamisches Entfernen des Zielattributs (surrTarName) aus den Daten
+            X = self.data.drop(columns=[self.surrTarName])
+            y = self.data[self.surrTarName]
+            
+            # Trainiere das Surrogatmodell mit den Daten
+            self.surrGrove.fit(X, y)
+            
+            # Mache Vorhersagen für die Zielvariable
+            target = self.surrGrove.predict(X)
         else:
-            # potentielle Fehlerquelle
+            # Verwende die angegebene predictive function, um das Ziel zu berechnen
             target = pfun(model=self.model, data=self.data)
+        
         return target
+
     
     def getGBM(self):
         grove = GradientBoostingRegressor(n_estimators=self.ntrees,
@@ -265,7 +276,6 @@ class grove():
         self.model = self.surrGrove
 
         self.result = self.get_result()
-        return(self.result)
     # end of calculateGrove()
 
         # TODO explanation und interpretation füllen 
