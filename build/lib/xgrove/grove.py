@@ -60,7 +60,7 @@ class grove():
     def getSurrogateTarget(self, pfun):
 
         if self.pfun is None:
-            target = self.model.predict(self.data.drop(self.surrTarName), self.data[self.surrTarName])
+            target = self.model.predict(self.data.drop(self.surrTarName, axis=1), self.data[self.surrTarName])
         else:
             # potentielle Fehlerquelle
             target = pfun(model=self.model, data=self.data)

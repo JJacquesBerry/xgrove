@@ -1,2 +1,2 @@
-from .grove import grove
-from .sgtree import sgtree
+from xgrove.grove import grove
+from xgrove.sgtree import sgtree
