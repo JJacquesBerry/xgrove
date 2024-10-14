@@ -3,7 +3,7 @@ from pathlib import Path
 import codecs
 import os
 
-VERSION = '0.1.10'
+VERSION = '0.1.11'
 DESCRIPTION = 'creating and calculating groves of tree models'
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text(encoding='utf-8')

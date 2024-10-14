@@ -60,7 +60,8 @@ class grove():
     def getSurrogateTarget(self, pfun):
 
         if self.pfun is None:
-            target = self.model.fit(self.data.drop(self.surrTarName, axis=1), self.data[self.surrTarName])
+            self.surrGrove.fit(self.data.drop(self.surrTarName, axis=1), self.data[self.surrTarName])        
+            target = self.surrGrove.predict(self.data.drop(self.surrTarName, axis=1))
         else:
             # potentielle Fehlerquelle
             target = pfun(model=self.model, data=self.data)
@@ -265,7 +266,6 @@ class grove():
         self.model = self.surrGrove
 
         self.result = self.get_result()
-        return(self.result)
     # end of calculateGrove()
 
         # TODO explanation und interpretation füllen 
