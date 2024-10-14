@@ -32,7 +32,7 @@ class xgrove():
     def __init__(self, 
                  model, 
                  data: pd.DataFrame,
-                 surTarName: str, 
+                 surrTarName: str, 
                  ntrees: np.array = np.array([4, 8, 16, 32, 64, 128]), 
                  pfun = None, 
                  shrink: int = 1, 
@@ -42,7 +42,7 @@ class xgrove():
                  ):
         self.model = model
         self.data = self.encodeCategorical(data)
-        self.surrTarName = surTarName
+        self.surrTarName = surrTarName
         self.ntrees = ntrees
         self.pfun = pfun
         self.shrink = shrink
