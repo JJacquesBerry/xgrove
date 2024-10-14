@@ -77,7 +77,7 @@ class grove():
         return target
 
     
-    def getGBM(self, size):
+    def getGBM(self):
         grove = GradientBoostingRegressor(n_estimators=max(self.ntrees),
                                           learning_rate=self.shrink,
                                           subsample=self.b_frac)
