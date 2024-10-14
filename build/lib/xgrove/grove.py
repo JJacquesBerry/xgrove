@@ -124,11 +124,12 @@ class grove():
         explanation = []
         groves = []
         interpretation = []
-
+        data = self.data.drop(self.surrTarName, axis=1)
+        
         # for every tree
         for nt in self.ntrees:
             # predictions generation
-            predictions = self.surrGrove.staged_predict(self.data)
+            predictions = self.surrGrove.staged_predict(data)
             predictions = [next(predictions) for _ in range(nt)][-1]
 
             rules = []
@@ -149,22 +150,37 @@ class grove():
             
             # convert to dataframe and add to rules
                 rules_df = pd.DataFrame(rules)
+                print(rules)
                 groves.append(rules_df)
             
-            vars = []
+            vars = data.columns
             splits= []
             csplits_left = []
             pleft = []
             pright = []
             for i in range(len(rules_df)):
-                vars = vars.append(data.columns[rules])
                 feature_index = rules_df.iloc[i]['feature']
-                var_name = rules_df.columns[feature_index]
+                print(feature_index)
+                var_name = data.columns[int(feature_index)]
+                print(var_name)
                 # Categorical columns
                 
 ######################### Potentielle Fehlerquelle ####################################
 
-                if rules_df.columns[i].dtype == pd.Categorical:
+                if pd.api.types.is_string_dtype(rules_df.columns[i]) or isinstance(rules_df.columns[i], str) or isinstance(rules_df.columns[i], object):
+                    #print(i+": Kategorisch")
+                    levs = rules_df[str(var_name)].unique()
+                    lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
+                    if sum(lids) == 1: levs = levs[lids]
+                    if sum(lids) > 1: levs = " | ".join(levs[lids])
+                    csl = levs[0] if isinstance(levs, (list, pd.Index)) else levs
+                    if len(levs) > 1:
+                        csl = " | ".join(levs)
+
+                    splits.append("")
+                    csplits_left.append(csl)
+                
+                elif isinstance(rules_df.columns[i], pd.Categorical):
                     levs = rules_df.columns[i].cat.categories
                     lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
                     if sum(lids) == 1: levs = levs[lids]
@@ -176,21 +192,8 @@ class grove():
                     splits.append("")
                     csplits_left.append(csl)
 
-                elif pd.api.types.is_string_dtype(rules_df.columns[i]) or rules_df.columns[i].dtype == object:
-                    #print(i+": Kategorisch")
-                    levs = rules_df.columns[var_name].unique()
-                    lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
-                    if sum(lids) == 1: levs = levs[lids]
-                    if sum(lids) > 1: levs = " | ".join(levs[lids])
-                    csl = levs[0] if isinstance(levs, (list, pd.Index)) else levs
-                    if len(levs) > 1:
-                        csl = " | ".join(levs)
-
-                    splits.append("")
-                    csplits_left.append(csl)
-                
                 # Numeric columns   
-                elif pd.api.types.is_numeric_dtype(rules_df.columns[i]) or np.issubdtype(rules_df.columns[i].dtype, np.number):
+                elif pd.api.types.is_numeric_dtype(rules_df.columns[i]) or np.issubdtype(rules_df.columns[i], np.number):
                     #print(i+": Numerisch")
                     splits = splits.append(rules_df.iloc[i]["threshold"])
                     csplits_left.append(pd.NA)

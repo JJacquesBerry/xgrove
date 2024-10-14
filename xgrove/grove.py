@@ -124,11 +124,12 @@ class grove():
         explanation = []
         groves = []
         interpretation = []
-
+        data = self.data.drop(self.surrTarName, axis=1)
+        
         # for every tree
         for nt in self.ntrees:
             # predictions generation
-            predictions = self.surrGrove.staged_predict(self.data)
+            predictions = self.surrGrove.staged_predict(data)
             predictions = [next(predictions) for _ in range(nt)][-1]
 
             rules = []
@@ -151,20 +152,35 @@ class grove():
                 rules_df = pd.DataFrame(rules)
                 groves.append(rules_df)
             
-            vars = []
+            vars = data.columns
             splits= []
             csplits_left = []
             pleft = []
             pright = []
+            print("rules_df: ", rules_df)
             for i in range(len(rules_df)):
-                vars = vars.append(data.columns[rules])
-                feature_index = rules_df.iloc[i]['feature']
-                var_name = rules_df.columns[feature_index]
+                feature_index = int(rules_df.iloc[i]['feature'])
+                print("feature_index: ", feature_index)
+                var_name = data.columns[int(feature_index)]
+                print("isinstance(var_name, str): ", isinstance(var_name, str))
                 # Categorical columns
                 
 ######################### Potentielle Fehlerquelle ####################################
 
-                if rules_df.columns[i].dtype == pd.Categorical:
+                if pd.api.types.is_string_dtype(data.columns[feature_index]) or isinstance(data.columns[feature_index], str) or isinstance(data.columns[feature_index], object):
+                    #print(i+": Kategorisch")
+                    levs = rules_df[i].unique()
+                    lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
+                    if sum(lids) == 1: levs = levs[lids]
+                    if sum(lids) > 1: levs = " | ".join(levs[lids])
+                    csl = levs[0] if isinstance(levs, (list, pd.Index)) else levs
+                    if len(levs) > 1:
+                        csl = " | ".join(levs)
+
+                    splits.append("")
+                    csplits_left.append(csl)
+                
+                elif isinstance(data.columns[i], pd.Categorical):
                     levs = rules_df.columns[i].cat.categories
                     lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
                     if sum(lids) == 1: levs = levs[lids]
@@ -176,27 +192,14 @@ class grove():
                     splits.append("")
                     csplits_left.append(csl)
 
-                elif pd.api.types.is_string_dtype(rules_df.columns[i]) or rules_df.columns[i].dtype == object:
-                    #print(i+": Kategorisch")
-                    levs = rules_df.columns[var_name].unique()
-                    lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
-                    if sum(lids) == 1: levs = levs[lids]
-                    if sum(lids) > 1: levs = " | ".join(levs[lids])
-                    csl = levs[0] if isinstance(levs, (list, pd.Index)) else levs
-                    if len(levs) > 1:
-                        csl = " | ".join(levs)
-
-                    splits.append("")
-                    csplits_left.append(csl)
-                
                 # Numeric columns   
-                elif pd.api.types.is_numeric_dtype(rules_df.columns[i]) or np.issubdtype(rules_df.columns[i].dtype, np.number):
+                elif pd.api.types.is_numeric_dtype(data.columns[i]) or np.issubdtype(data.columns[i], np.number):
                     #print(i+": Numerisch")
                     splits = splits.append(rules_df.iloc[i]["threshold"])
                     csplits_left.append(pd.NA)
 
                 else:
-                    print(rules_df.columns[i]+": uncaught case")
+                    print(rules_df[i]+": uncaught case")
             # rules filled
             pleft.append(rules_df[i]["pleft"])
             pright.append(rules_df[i]["pleft"])
@@ -280,3 +283,29 @@ class grove():
 
         # TODO explanation und interpretation füllen 
         # TODO add functionality of plot
+
+# import numpy as np
+# import pandas as pd
+# from sklearn.ensemble import RandomForestRegressor
+# from sklearn.model_selection import train_test_split
+# from sklearn.datasets import make_regression
+
+# # 1. Erstellen eines synthetischen Datensatzes
+# X, y = make_regression(n_samples=500, n_features=10, noise=0.1, random_state=42)
+# data = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(10)])
+# data['target'] = y
+
+# # 2. Aufteilen der Daten in Trainings- und Testdaten
+# data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
+
+# # 3. Initialisieren des RandomForestRegressors
+# rf_Model = RandomForestRegressor(n_estimators=100, random_state=42)
+
+# # 4. Instanziieren der Grove-Klasse
+# grove_model = grove(data=data_train, model=rf_Model, surrTarName='target')
+
+# # 5. Berechnen des Groves
+# results = grove_model.calculateGrove()
+
+# # 6. Ergebnisse anzeigen
+# print("Berechnungen abgeschlossen.")
