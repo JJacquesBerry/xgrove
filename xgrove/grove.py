@@ -152,35 +152,35 @@ class grove():
                 rules_df = pd.DataFrame(rules)
                 groves.append(rules_df)
             
-            vars = data.columns
+            vars = []
             splits= []
             csplits_left = []
             pleft = []
             pright = []
-            print("rules_df: ", rules_df)
             for i in range(len(rules_df)):
                 feature_index = int(rules_df.iloc[i]['feature'])
                 print("feature_index: ", feature_index)
                 var_name = data.columns[int(feature_index)]
+                vars.append(var_name)
                 print("isinstance(var_name, str): ", isinstance(var_name, str))
                 # Categorical columns
                 
 ######################### Potentielle Fehlerquelle ####################################
 
-                if pd.api.types.is_string_dtype(data.columns[feature_index]) or isinstance(data.columns[feature_index], str) or isinstance(data.columns[feature_index], object):
+                if pd.api.types.is_string_dtype(data.iloc[:,feature_index]) or isinstance(data.iloc[:,feature_index], str) or isinstance(data.iloc[:,feature_index], object):
                     #print(i+": Kategorisch")
-                    levs = rules_df[i].unique()
+                    levs = data[var_name].unique()
                     lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
                     if sum(lids) == 1: levs = levs[lids]
                     if sum(lids) > 1: levs = " | ".join(levs[lids])
                     csl = levs[0] if isinstance(levs, (list, pd.Index)) else levs
                     if len(levs) > 1:
-                        csl = " | ".join(levs)
+                        csl = " | ".join(str(levs))
 
                     splits.append("")
                     csplits_left.append(csl)
                 
-                elif isinstance(data.columns[i], pd.Categorical):
+                elif isinstance(data.iloc[:,i], pd.Categorical):
                     levs = rules_df.columns[i].cat.categories
                     lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
                     if sum(lids) == 1: levs = levs[lids]
@@ -193,7 +193,7 @@ class grove():
                     csplits_left.append(csl)
 
                 # Numeric columns   
-                elif pd.api.types.is_numeric_dtype(data.columns[i]) or np.issubdtype(data.columns[i], np.number):
+                elif pd.api.types.is_numeric_dtype(data.iloc[:,i]) or np.issubdtype(data.iloc[:,i], np.number):
                     #print(i+": Numerisch")
                     splits = splits.append(rules_df.iloc[i]["threshold"])
                     csplits_left.append(pd.NA)
@@ -201,18 +201,34 @@ class grove():
                 else:
                     print(rules_df[i]+": uncaught case")
             # rules filled
-            pleft.append(rules_df[i]["pleft"])
-            pright.append(rules_df[i]["pleft"])
+            print("i: ", i)
+            print("Länge rules_df: ", len(rules_df))
+
+            pleft.append(rules_df.loc[:,"pleft"])
+            pright.append(rules_df.loc[:,"pleft"])
+
+            print("pright.len: ",len(np.array(pright)))
+            print(pright)
+            print("vars.len: ",len(vars))
+            print("splits.len: ",len(splits))
         
-            basepred = self.surrGrove.estimator_
+            pright = [ round(elem, 4) for elem in pright ]
+            pleft = [ round(elem, 4) for elem in pleft ]
+
+            basepred = self.surrGrove.estimators_
+            
             df = pd.DataFrame({
                 "vars": vars,
                 "splits": splits,
                 "left": csplits_left,
-                "pleft": round(pleft, 4),
-                "pright": round(pright, 4)
+                "pleft": pleft,
+                "pright": pright
             })
-            df = df.groupby(vars, splits, left)
+            print(df)
+            print("vars: ", df.loc[:,"vars"])
+            print("splits: ", df.loc[:,"splits"])
+            print("left: ", df.loc[:,"left"])
+            df = df.groupby("vars", "splits", "left")
             df_small = df.agg({"pleft" : "sum", "pright" : "sum"})
 
             if(len(df_small) > 1):
@@ -284,28 +300,29 @@ class grove():
         # TODO explanation und interpretation füllen 
         # TODO add functionality of plot
 
-# import numpy as np
-# import pandas as pd
-# from sklearn.ensemble import RandomForestRegressor
-# from sklearn.model_selection import train_test_split
-# from sklearn.datasets import make_regression
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_regression
 
-# # 1. Erstellen eines synthetischen Datensatzes
-# X, y = make_regression(n_samples=500, n_features=10, noise=0.1, random_state=42)
-# data = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(10)])
-# data['target'] = y
+# 1. Erstellen eines synthetischen Datensatzes
+X, y = make_regression(n_samples=500, n_features=10, noise=0.1, random_state=42)
+data = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(10)])
+data['target'] = y
 
-# # 2. Aufteilen der Daten in Trainings- und Testdaten
-# data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
+# 2. Aufteilen der Daten in Trainings- und Testdaten
+data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
 
-# # 3. Initialisieren des RandomForestRegressors
-# rf_Model = RandomForestRegressor(n_estimators=100, random_state=42)
+# 3. Initialisieren des RandomForestRegressors
+rf_Model = RandomForestRegressor(n_estimators=100, random_state=42)
 
-# # 4. Instanziieren der Grove-Klasse
-# grove_model = grove(data=data_train, model=rf_Model, surrTarName='target')
+# 4. Instanziieren der Grove-Klasse
+grove_model = grove(data=data_train, model=rf_Model, surrTarName='target')
 
-# # 5. Berechnen des Groves
-# results = grove_model.calculateGrove()
+# 5. Berechnen des Groves
+results = grove_model.calculateGrove()
 
-# # 6. Ergebnisse anzeigen
-# print("Berechnungen abgeschlossen.")
+# 6. Ergebnisse anzeigen
+print("Berechnungen abgeschlossen.")
+
