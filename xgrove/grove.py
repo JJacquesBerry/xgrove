@@ -207,13 +207,13 @@ class grove():
             pleft.append(rules_df.loc[:,"pleft"])
             pright.append(rules_df.loc[:,"pleft"])
 
-            print("pright.len: ",len(np.array(pright)))
-            print(pright)
+            # print("pright.len: ",len(np.array(round(elem, 4) for elem in pright)))
+            print()
             print("vars.len: ",len(vars))
             print("splits.len: ",len(splits))
-        
-            pright = [ round(elem, 4) for elem in pright ]
-            pleft = [ round(elem, 4) for elem in pleft ]
+
+            pleft = np.array(round(elem, 4) for elem in pleft)
+            pright = np.array(round(elem, 4) for elem in pright)
 
             basepred = self.surrGrove.estimators_
             
@@ -228,18 +228,21 @@ class grove():
             print("vars: ", df.loc[:,"vars"])
             print("splits: ", df.loc[:,"splits"])
             print("left: ", df.loc[:,"left"])
-            df = df.groupby("vars", "splits", "left")
+            df = df.groupby(["vars", "splits", "left"])
             df_small = df.agg({"pleft" : "sum", "pright" : "sum"})
+            print(df_small)
+            print(df_small.shape)
 
             if(len(df_small) > 1):
                 i = 2
                 while (i != 0):
                     drop_rule = False
                     # check if its numeric AND NOT categorical
-                    if pd.api.types.is_numeric_dtype(rules_df.columns[i]) or np.issubdtype(rules_df.columns[i].dtype, np.number) and not(rules_df.columns[i].dtype == pd.Categorical or pd.api.types.is_string_dtype(rules_df.columns[i]) or rules_df.columns[i].dtype == object):
+                    if pd.api.types.is_numeric_dtype(rules_df.iloc[:,i])or np.issubdtype(rules_df.iloc[:,i], np.number) and not(isinstance(rules_df.iloc[:,i], pd.Categorical | object | str) or pd.api.types.is_string_dtype(rules_df.iloc[:,i])):
                         #print(i+": Numerisch")
+                        small_vars = df_small.loc['vars']
                         for j in range(0, i):
-                            if df_small.vars[i] == df_small.vars[j]:
+                            if small_vars[i] == small_vars[j]:
                                 v1 = data[df_small.vars[i]] <= df_small.splits[i]
                                 v2 = data[df_small.vars[j]] <= df_small.splits[j]
                                 tab = [v1,v2]
