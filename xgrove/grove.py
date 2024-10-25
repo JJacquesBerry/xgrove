@@ -162,8 +162,8 @@ class grove():
                 print("feature_index: ", feature_index)
                 var_name = data.columns[int(feature_index)]
                 vars.append(var_name)
-                print("isinstance(var_name, str): ", isinstance(var_name, str))
-                # Categorical columns
+                # print("isinstance(var_name, str): ", isinstance(var_name, str))
+                # # Categorical columns
                 
 ######################### Potentielle Fehlerquelle ####################################
 
@@ -200,17 +200,17 @@ class grove():
 
                 else:
                     print(rules_df[i]+": uncaught case")
-            # rules filled
-            print("i: ", i)
-            print("Länge rules_df: ", len(rules_df))
+            # # rules filled
+            # print("i: ", i)
+            # print("Länge rules_df: ", len(rules_df))
 
             pleft.append(rules_df.loc[:,"pleft"])
             pright.append(rules_df.loc[:,"pleft"])
 
-            # print("pright.len: ",len(np.array(round(elem, 4) for elem in pright)))
-            print()
-            print("vars.len: ",len(vars))
-            print("splits.len: ",len(splits))
+            # # print("pright.len: ",len(np.array(round(elem, 4) for elem in pright)))
+            # print()
+            # print("vars.len: ",len(vars))
+            # print("splits.len: ",len(splits))
 
             pleft = np.array(round(elem, 4) for elem in pleft)
             pright = np.array(round(elem, 4) for elem in pright)
@@ -224,44 +224,54 @@ class grove():
                 "pleft": pleft,
                 "pright": pright
             })
-            print(df)
-            print("vars: ", df.loc[:,"vars"])
-            print("splits: ", df.loc[:,"splits"])
-            print("left: ", df.loc[:,"left"])
-            df = df.groupby(["vars", "splits", "left"])
-            df_small = df.agg({"pleft" : "sum", "pright" : "sum"})
-            print(df_small)
-            print(df_small.shape)
+            # print(df)
+            # print("vars: ", df.loc[:,"vars"])
+            # print("splits: ", df.loc[:,"splits"])
+            # print("left: ", df.loc[:,"left"])
+
+            df_small = df.groupby(["vars", "splits", "left"], as_index=False).agg({"pleft" : "sum", "pright" : "sum"})
+            # df_small.set_index(["vars", "splits", "left"], inplace=True)
+            # df_small.index.set_names(["vars", "splits", "left"], inplace=True)
+            # print(df_small)
+            # print(df_small.shape)
+            # print(df_small.columns)
+            # print(df_small.index.names)
 
             if(len(df_small) > 1):
                 i = 2
                 while (i != 0):
                     drop_rule = False
                     # check if its numeric AND NOT categorical
-                    if pd.api.types.is_numeric_dtype(rules_df.iloc[:,i])or np.issubdtype(rules_df.iloc[:,i], np.number) and not(isinstance(rules_df.iloc[:,i], pd.Categorical | object | str) or pd.api.types.is_string_dtype(rules_df.iloc[:,i])):
+                    # all_vars = df_small.index.get_level_values('vars')
+
+                    # print("all_vars: ",all_vars)
+                    # print("df_small: ",df_small)
+                    # print(i)
+                    # print("vars at ",i,": ", df_small["vars"].iloc[i])
+
+                    if pd.api.types.is_numeric_dtype(self.data[df_small["vars"].iloc[i]])or np.issubdtype(self.data[df_small["vars"].iloc[i]], np.number) and not(isinstance(self.data[df_small["vars"].iloc[i]], pd.Categorical | object | str) or pd.api.types.is_string_dtype(self.data[df_small["vars"].iloc[i]])):
                         #print(i+": Numerisch")
-                        small_vars = df_small.loc['vars']
                         for j in range(0, i):
-                            if small_vars[i] == small_vars[j]:
-                                v1 = data[df_small.vars[i]] <= df_small.splits[i]
-                                v2 = data[df_small.vars[j]] <= df_small.splits[j]
+                            if df_small["vars"][i] == df_small["vars"][j]:
+                                v1 = self.data[df_small["vars"][i]] <= df_small["splits"][i]
+                                v2 = data[df_small["vars"][j]] <= df_small["splits"][j]
                                 tab = [v1,v2]
-                                if sum(np.diag(tab)) == sum(tab):
-                                    df_small.pleft[j]  = df_small.pleft[i] + df_small.pleft[j] 
-                                    df_small.pright[j] = df_small.pright[i] + df_small.pright[j] 
+                                if tab.values.trace() == tab.values.sum():
+                                    df_small.at[j, 'pleft'] = df_small.at[i, 'pleft'] + df_small.at[j, 'pleft']
+                                    df_small.at[j, 'pright'] = df_small.at[i, 'pright'] + df_small.at[j, 'pright']
                                     drop_rule = True
-                    if drop_rule: df_small = df_small[-i]
+                    if drop_rule: df_small = df_small[-i,]
                     if not drop_rule: i = i+1
-                    if i > len(df_small): i = 0
+                    if i+1 > len(df_small): i = 0
             # compute complexity and explainability statistics
-            upsilon, rho = self.upsilon()
+            upsilon, rho = self.upsilon(pexp=predictions)
 
             df0 = pd.DataFrame({
-                "vars": "Interept",
-                "splits": pd.NA,
-                "left": pd.NA,
-                "pleft": basepred,
-                "pright": basepred
+                "vars": ["Interept"],
+                "splits": [pd.NA],
+                "left": [pd.NA],
+                "pleft": [basepred],
+                "pright": [basepred]
             })
             df = pd.concat([df0, df], ignore_index=True)
             df_small = pd.concat([df0, df_small], ignore_index = True)
@@ -279,18 +289,23 @@ class grove():
                 }, axis=1)
             
 
-            groves[[len(groves)]] = df
-            interpretation[[len(interpretation)]] = df_small
-            explanation = explanation.append(nt, len(df_small), upsilon, rho)
+            groves[len(groves)-1] = df
+            interpretation.append(df_small)
+            explanation.append({
+                "trees": nt,
+                "rules":len(df_small),
+                "upsilon":upsilon,
+                "cor": rho
+                })
 
         # end of for every tree
-        groves = pd.DataFrame(groves)
-        interpretation = pd.DataFrame(interpretation)
+        # groves = pd.DataFrame(groves)
+        # interpretation = pd.DataFrame(interpretation)
         explanation = pd.DataFrame(explanation)
 
-        groves.columns = self.ntrees
-        interpretation.columns = self.ntrees
-        explanation.columns = ["trees", "rules", "upsilon", "cor"]
+        # groves.index = self.ntrees
+        # interpretation.index = self.ntrees
+        # # explanation.columns = ["trees", "rules", "upsilon", "cor"]
 
         self.explanation = explanation
         self.rules = interpretation
