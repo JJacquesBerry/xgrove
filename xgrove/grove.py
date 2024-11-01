@@ -14,6 +14,8 @@ from sklearn import preprocessing
 from sklearn.ensemble import RandomForestRegressor
 from pandas import read_csv
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn2pmml import PMMLPipeline, sklearn2pmml
+from pypmml import Model
     
 
 # read testing dataset
@@ -120,6 +122,56 @@ class grove():
         plt.title(f'{ord} vs {abs}')
         plt.grid(True)
         plt.show()
+
+    def load_pmml_model(pmml_path):
+        """
+        Lädt ein PMML-Modell und gibt das Modellobjekt zurück.
+
+        Args:
+            pmml_path (str): Der Dateipfad zur PMML-Datei.
+
+        Returns:
+            model (pypmml.Model): Das geladene Modellobjekt.
+        """
+        try:
+            # Lade das PMML-Modell
+            model = Model.load(pmml_path)
+            return model
+        except Exception as e:
+            print(f"Fehler beim Laden des PMML-Modells: {e}")
+            return None
+
+    def export_to_pmml(self):
+        print("Exportiere Modelle als PMML...")
+        X = self.data.drop(columns=[self.surrTarName])
+        
+        # Speichere GBM Modell
+        pipeline = PMMLPipeline([
+            ("classifier", self.surrGrove)
+        ])
+        sklearn2pmml(pipeline, "models/gbm_model.pmml")
+        
+        # Speichere das RandomForest-Modell (oder anderes übergebenes Modell)
+        model_pipeline = PMMLPipeline([
+            ("classifier", self.model)
+        ])
+        sklearn2pmml(model_pipeline, "models/analyzed_model.pmml")
+        
+        print("Modelle erfolgreich als PMML exportiert.")
+        
+        # Speichere die Trainings- und Testdatensätze als CSV
+        self.save_datasets()
+
+    def save_datasets(self):
+        # Speichere den Datensatz für das Training
+        self.data.to_csv("data/training_data.csv", index=False)
+        print("Trainingsdaten als CSV gespeichert: training_data.csv")
+
+        # Speichere den Datensatz für das Testen (falls verfügbar)
+        if hasattr(self, 'data_test'):
+            self.data_test.to_csv("data/testing_data.csv", index=False)
+            print("Testdaten als CSV gespeichert: testing_data.csv")
+        
     def calculateGrove(self):
         explanation = []
         groves = []
@@ -325,6 +377,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_regression
 
 # 1. Erstellen eines synthetischen Datensatzes
+# erklären wie die daten erstellt werden
+# erklären was dieses Modell genau für ein modell ist
 X, y = make_regression(n_samples=500, n_features=10, noise=0.1, random_state=42)
 data = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(10)])
 data['target'] = y

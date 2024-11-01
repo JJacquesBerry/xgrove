@@ -14,6 +14,8 @@ from sklearn import preprocessing
 from sklearn.ensemble import RandomForestRegressor
 from pandas import read_csv
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn2pmml import PMMLPipeline, sklearn2pmml
+from pypmml import Model
     
 
 # read testing dataset
@@ -120,6 +122,56 @@ class grove():
         plt.title(f'{ord} vs {abs}')
         plt.grid(True)
         plt.show()
+
+    def load_pmml_model(pmml_path):
+        """
+        Lädt ein PMML-Modell und gibt das Modellobjekt zurück.
+
+        Args:
+            pmml_path (str): Der Dateipfad zur PMML-Datei.
+
+        Returns:
+            model (pypmml.Model): Das geladene Modellobjekt.
+        """
+        try:
+            # Lade das PMML-Modell
+            model = Model.load(pmml_path)
+            return model
+        except Exception as e:
+            print(f"Fehler beim Laden des PMML-Modells: {e}")
+            return None
+
+    def export_to_pmml(self):
+        print("Exportiere Modelle als PMML...")
+        X = self.data.drop(columns=[self.surrTarName])
+        
+        # Speichere GBM Modell
+        pipeline = PMMLPipeline([
+            ("classifier", self.surrGrove)
+        ])
+        sklearn2pmml(pipeline, "models/gbm_model.pmml")
+        
+        # Speichere das RandomForest-Modell (oder anderes übergebenes Modell)
+        model_pipeline = PMMLPipeline([
+            ("classifier", self.model)
+        ])
+        sklearn2pmml(model_pipeline, "models/analyzed_model.pmml")
+        
+        print("Modelle erfolgreich als PMML exportiert.")
+        
+        # Speichere die Trainings- und Testdatensätze als CSV
+        self.save_datasets()
+
+    def save_datasets(self):
+        # Speichere den Datensatz für das Training
+        self.data.to_csv("data/training_data.csv", index=False)
+        print("Trainingsdaten als CSV gespeichert: training_data.csv")
+
+        # Speichere den Datensatz für das Testen (falls verfügbar)
+        if hasattr(self, 'data_test'):
+            self.data_test.to_csv("data/testing_data.csv", index=False)
+            print("Testdaten als CSV gespeichert: testing_data.csv")
+        
     def calculateGrove(self):
         explanation = []
         groves = []
@@ -150,37 +202,37 @@ class grove():
             
             # convert to dataframe and add to rules
                 rules_df = pd.DataFrame(rules)
-                print(rules)
                 groves.append(rules_df)
             
-            vars = data.columns
+            vars = []
             splits= []
             csplits_left = []
             pleft = []
             pright = []
             for i in range(len(rules_df)):
-                feature_index = rules_df.iloc[i]['feature']
-                print(feature_index)
+                feature_index = int(rules_df.iloc[i]['feature'])
+                print("feature_index: ", feature_index)
                 var_name = data.columns[int(feature_index)]
-                print(var_name)
-                # Categorical columns
+                vars.append(var_name)
+                # print("isinstance(var_name, str): ", isinstance(var_name, str))
+                # # Categorical columns
                 
 ######################### Potentielle Fehlerquelle ####################################
 
-                if pd.api.types.is_string_dtype(rules_df.columns[i]) or isinstance(rules_df.columns[i], str) or isinstance(rules_df.columns[i], object):
+                if pd.api.types.is_string_dtype(data.iloc[:,feature_index]) or isinstance(data.iloc[:,feature_index], str) or isinstance(data.iloc[:,feature_index], object):
                     #print(i+": Kategorisch")
-                    levs = rules_df[str(var_name)].unique()
+                    levs = data[var_name].unique()
                     lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
                     if sum(lids) == 1: levs = levs[lids]
                     if sum(lids) > 1: levs = " | ".join(levs[lids])
                     csl = levs[0] if isinstance(levs, (list, pd.Index)) else levs
                     if len(levs) > 1:
-                        csl = " | ".join(levs)
+                        csl = " | ".join(str(levs))
 
                     splits.append("")
                     csplits_left.append(csl)
                 
-                elif isinstance(rules_df.columns[i], pd.Categorical):
+                elif isinstance(data.iloc[:,i], pd.Categorical):
                     levs = rules_df.columns[i].cat.categories
                     lids = self.surrGrove.estimators_[0, 0].tree_.value[int(rules_df.iloc[i]['threshold'])] == -1
                     if sum(lids) == 1: levs = levs[lids]
@@ -193,56 +245,85 @@ class grove():
                     csplits_left.append(csl)
 
                 # Numeric columns   
-                elif pd.api.types.is_numeric_dtype(rules_df.columns[i]) or np.issubdtype(rules_df.columns[i], np.number):
+                elif pd.api.types.is_numeric_dtype(data.iloc[:,i]) or np.issubdtype(data.iloc[:,i], np.number):
                     #print(i+": Numerisch")
                     splits = splits.append(rules_df.iloc[i]["threshold"])
                     csplits_left.append(pd.NA)
 
                 else:
-                    print(rules_df.columns[i]+": uncaught case")
-            # rules filled
-            pleft.append(rules_df[i]["pleft"])
-            pright.append(rules_df[i]["pleft"])
-        
-            basepred = self.surrGrove.estimator_
+                    print(rules_df[i]+": uncaught case")
+            # # rules filled
+            # print("i: ", i)
+            # print("Länge rules_df: ", len(rules_df))
+
+            pleft.append(rules_df.loc[:,"pleft"])
+            pright.append(rules_df.loc[:,"pleft"])
+
+            # # print("pright.len: ",len(np.array(round(elem, 4) for elem in pright)))
+            # print()
+            # print("vars.len: ",len(vars))
+            # print("splits.len: ",len(splits))
+
+            pleft = np.array(round(elem, 4) for elem in pleft)
+            pright = np.array(round(elem, 4) for elem in pright)
+
+            basepred = self.surrGrove.estimators_
+            
             df = pd.DataFrame({
                 "vars": vars,
                 "splits": splits,
                 "left": csplits_left,
-                "pleft": round(pleft, 4),
-                "pright": round(pright, 4)
+                "pleft": pleft,
+                "pright": pright
             })
-            df = df.groupby(vars, splits, left)
-            df_small = df.agg({"pleft" : "sum", "pright" : "sum"})
+            # print(df)
+            # print("vars: ", df.loc[:,"vars"])
+            # print("splits: ", df.loc[:,"splits"])
+            # print("left: ", df.loc[:,"left"])
+
+            df_small = df.groupby(["vars", "splits", "left"], as_index=False).agg({"pleft" : "sum", "pright" : "sum"})
+            # df_small.set_index(["vars", "splits", "left"], inplace=True)
+            # df_small.index.set_names(["vars", "splits", "left"], inplace=True)
+            # print(df_small)
+            # print(df_small.shape)
+            # print(df_small.columns)
+            # print(df_small.index.names)
 
             if(len(df_small) > 1):
                 i = 2
                 while (i != 0):
                     drop_rule = False
                     # check if its numeric AND NOT categorical
-                    if pd.api.types.is_numeric_dtype(rules_df.columns[i]) or np.issubdtype(rules_df.columns[i].dtype, np.number) and not(rules_df.columns[i].dtype == pd.Categorical or pd.api.types.is_string_dtype(rules_df.columns[i]) or rules_df.columns[i].dtype == object):
+                    # all_vars = df_small.index.get_level_values('vars')
+
+                    # print("all_vars: ",all_vars)
+                    # print("df_small: ",df_small)
+                    # print(i)
+                    # print("vars at ",i,": ", df_small["vars"].iloc[i])
+
+                    if pd.api.types.is_numeric_dtype(self.data[df_small["vars"].iloc[i]])or np.issubdtype(self.data[df_small["vars"].iloc[i]], np.number) and not(isinstance(self.data[df_small["vars"].iloc[i]], pd.Categorical | object | str) or pd.api.types.is_string_dtype(self.data[df_small["vars"].iloc[i]])):
                         #print(i+": Numerisch")
                         for j in range(0, i):
-                            if df_small.vars[i] == df_small.vars[j]:
-                                v1 = data[df_small.vars[i]] <= df_small.splits[i]
-                                v2 = data[df_small.vars[j]] <= df_small.splits[j]
+                            if df_small["vars"][i] == df_small["vars"][j]:
+                                v1 = self.data[df_small["vars"][i]] <= df_small["splits"][i]
+                                v2 = data[df_small["vars"][j]] <= df_small["splits"][j]
                                 tab = [v1,v2]
-                                if sum(np.diag(tab)) == sum(tab):
-                                    df_small.pleft[j]  = df_small.pleft[i] + df_small.pleft[j] 
-                                    df_small.pright[j] = df_small.pright[i] + df_small.pright[j] 
+                                if tab.values.trace() == tab.values.sum():
+                                    df_small.at[j, 'pleft'] = df_small.at[i, 'pleft'] + df_small.at[j, 'pleft']
+                                    df_small.at[j, 'pright'] = df_small.at[i, 'pright'] + df_small.at[j, 'pright']
                                     drop_rule = True
-                    if drop_rule: df_small = df_small[-i]
+                    if drop_rule: df_small = df_small[-i,]
                     if not drop_rule: i = i+1
-                    if i > len(df_small): i = 0
+                    if i+1 > len(df_small): i = 0
             # compute complexity and explainability statistics
-            upsilon, rho = self.upsilon()
+            upsilon, rho = self.upsilon(pexp=predictions)
 
             df0 = pd.DataFrame({
-                "vars": "Interept",
-                "splits": pd.NA,
-                "left": pd.NA,
-                "pleft": basepred,
-                "pright": basepred
+                "vars": ["Interept"],
+                "splits": [pd.NA],
+                "left": [pd.NA],
+                "pleft": [basepred],
+                "pright": [basepred]
             })
             df = pd.concat([df0, df], ignore_index=True)
             df_small = pd.concat([df0, df_small], ignore_index = True)
@@ -260,18 +341,23 @@ class grove():
                 }, axis=1)
             
 
-            groves[[len(groves)]] = df
-            interpretation[[len(interpretation)]] = df_small
-            explanation = explanation.append(nt, len(df_small), upsilon, rho)
+            groves[len(groves)-1] = df
+            interpretation.append(df_small)
+            explanation.append({
+                "trees": nt,
+                "rules":len(df_small),
+                "upsilon":upsilon,
+                "cor": rho
+                })
 
         # end of for every tree
-        groves = pd.DataFrame(groves)
-        interpretation = pd.DataFrame(interpretation)
+        # groves = pd.DataFrame(groves)
+        # interpretation = pd.DataFrame(interpretation)
         explanation = pd.DataFrame(explanation)
 
-        groves.columns = self.ntrees
-        interpretation.columns = self.ntrees
-        explanation.columns = ["trees", "rules", "upsilon", "cor"]
+        # groves.index = self.ntrees
+        # interpretation.index = self.ntrees
+        # # explanation.columns = ["trees", "rules", "upsilon", "cor"]
 
         self.explanation = explanation
         self.rules = interpretation
@@ -283,3 +369,32 @@ class grove():
 
         # TODO explanation und interpretation füllen 
         # TODO add functionality of plot
+
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_regression
+
+# 1. Erstellen eines synthetischen Datensatzes
+# erklären wie die daten erstellt werden
+# erklären was dieses Modell genau für ein modell ist
+X, y = make_regression(n_samples=500, n_features=10, noise=0.1, random_state=42)
+data = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(10)])
+data['target'] = y
+
+# 2. Aufteilen der Daten in Trainings- und Testdaten
+data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
+
+# 3. Initialisieren des RandomForestRegressors
+rf_Model = RandomForestRegressor(n_estimators=100, random_state=42)
+
+# 4. Instanziieren der Grove-Klasse
+grove_model = grove(data=data_train, model=rf_Model, surrTarName='target')
+
+# 5. Berechnen des Groves
+results = grove_model.calculateGrove()
+
+# 6. Ergebnisse anzeigen
+print("Berechnungen abgeschlossen.")
+
