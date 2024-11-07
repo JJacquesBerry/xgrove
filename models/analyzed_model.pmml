@@ -3,7 +3,7 @@
  <Header copyright="Copyright (c) 2024 jjacq" description="Random Forest Tree Model">
   <Extension name="user" value="jjacq" extender="SoftwareAG PMML Generator"/>
   <Application name="SoftwareAG PMML Generator" version="2.5.2"/>
-  <Timestamp>2024-11-03 19:02:22.40389</Timestamp>
+  <Timestamp>2024-11-05 13:07:09.003961</Timestamp>
  </Header>
  <DataDictionary numberOfFields="6">
   <DataField name="Zielwert" optype="continuous" dataType="double"/>

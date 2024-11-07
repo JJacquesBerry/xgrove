@@ -34,7 +34,6 @@ class grove():
     def __init__(self, 
                  model, 
                  data: pd.DataFrame,
-                 surrTarName: str, 
                  ntrees: np.array = np.array([4, 8, 16, 32, 64, 128]), 
                  pfun = None, 
                  shrink: int = 1, 
@@ -44,15 +43,14 @@ class grove():
                  ):
         self.model = model
         self.data = self.encodeCategorical(data)
-        self.surrTarName = surrTarName
         self.ntrees = ntrees
         self.pfun = pfun
         self.shrink = shrink
         self.b_frac = b_frac
         self.seed = seed
         self.grove_rate = grove_rate
-        self.surrGrove = self.getGBM()
         self.surrTar = self.getSurrogateTarget(pfun = self.pfun)
+        self.surrGrove = self.getGBM()
         self.explanation = []
         self.groves = []
         self.rules = []
@@ -64,14 +62,14 @@ class grove():
     # Überprüfen, ob pfun None ist
         if self.pfun is None:
             # Dynamisches Entfernen des Zielattributs (surrTarName) aus den Daten
-            X = self.data.drop(columns=[self.surrTarName])
-            y = self.data[self.surrTarName]
+            # X = self.data.drop(columns=[self.surrTarName])
+            # y = self.data[self.surrTarName]
             
             # Trainiere das Surrogatmodell mit den Daten
-            self.surrGrove.fit(X, y)
+            # self.surrGrove.fit(X, y)
             
             # Mache Vorhersagen für die Zielvariable
-            target = self.surrGrove.predict(X)
+            target = self.model.predict(data)
         else:
             # Verwende die angegebene predictive function, um das Ziel zu berechnen
             target = pfun(model=self.model, data=self.data)
@@ -83,6 +81,7 @@ class grove():
         grove = GradientBoostingRegressor(n_estimators=max(self.ntrees),
                                           learning_rate=self.shrink,
                                           subsample=self.b_frac)
+        grove.fit(self.data, self.surrTar)
         return grove
 
     # OHE for evaluating categorical columns
@@ -176,7 +175,7 @@ class grove():
         explanation = []
         groves = []
         interpretation = []
-        data = self.data.drop(self.surrTarName, axis=1)
+        data = self.data
         
         # for every tree
         for nt in self.ntrees:
@@ -211,7 +210,7 @@ class grove():
             pright = []
             for i in range(len(rules_df)):
                 feature_index = int(rules_df.iloc[i]['feature'])
-                print("feature_index: ", feature_index)
+                # print("feature_index: ", feature_index)
                 var_name = data.columns[int(feature_index)]
                 vars.append(var_name)
                 # print("isinstance(var_name, str): ", isinstance(var_name, str))
@@ -381,20 +380,22 @@ from sklearn.datasets import make_regression
 # erklären was dieses Modell genau für ein modell ist
 X, y = make_regression(n_samples=500, n_features=10, noise=0.1, random_state=42)
 data = pd.DataFrame(X, columns=[f'feature_{i}' for i in range(10)])
-data['target'] = y
+# data['target'] = y
 
 # 2. Aufteilen der Daten in Trainings- und Testdaten
-data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
+# data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
 
 # 3. Initialisieren des RandomForestRegressors
 rf_Model = RandomForestRegressor(n_estimators=100, random_state=42)
+rf_Model.fit(X,y)
 
 # 4. Instanziieren der Grove-Klasse
-grove_model = grove(data=data_train, model=rf_Model, surrTarName='target')
+grove_model = grove(data=data, model=rf_Model)
 
 # 5. Berechnen des Groves
 results = grove_model.calculateGrove()
 
 # 6. Ergebnisse anzeigen
 print("Berechnungen abgeschlossen.")
+print(grove_model.result)
 
