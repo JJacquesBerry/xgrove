@@ -30,7 +30,7 @@ os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 class grove():
     # define xgrove-class with default values
     # TODO add type check
-    print("its upgraded")
+    # print("its upgraded")
     def __init__(self, 
                  model, 
                  data: pd.DataFrame,
