@@ -40,6 +40,7 @@ class grove():
                  b_frac: int = 1, 
                  seed: int = 42,
                  grove_rate: float = 1,
+                 trained: bool = False
                  ):
         self.model = model
         self.data = self.encodeCategorical(data)
@@ -51,6 +52,7 @@ class grove():
         self.grove_rate = grove_rate
         self.surrTar = self.getSurrogateTarget(pfun = self.pfun)
         self.surrGrove = self.getGBM()
+        self.trained = trained
         self.explanation = []
         self.groves = []
         self.rules = []
@@ -81,7 +83,8 @@ class grove():
         grove = GradientBoostingRegressor(n_estimators=max(self.ntrees),
                                           learning_rate=self.shrink,
                                           subsample=self.b_frac)
-        grove.fit(self.data, self.surrTar)
+        if not self.trained: # trainiere das Modell, falls es noch nicht trainiert wurde ansonsten nur zurückgeben
+            grove.fit(self.data, self.surrTar)
         return grove
 
     # OHE for evaluating categorical columns
@@ -366,7 +369,6 @@ class grove():
         self.result = self.get_result()
     # end of calculateGrove()
 
-        # TODO explanation und interpretation füllen 
         # TODO add functionality of plot
 
 import numpy as np

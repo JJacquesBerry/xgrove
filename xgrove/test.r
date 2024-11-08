@@ -8,15 +8,15 @@ library(xgrove)
 set.seed(123)
 
 # Beispiel-Daten erstellen
-x <- rnorm(100, mean = 50, sd = 10)  # Zufällige unabhängige Variable
-y <- 2.5 * x + rnorm(100, mean = 0, sd = 5)  # Abhängige Variable mit einer linearen Beziehung zu x
+x <- rnorm(500, mean = 50, sd = 10)  # Zufällige unabhängige Variable
+y <- 2.5 * x + rnorm(500, mean = 0, sd = 5)  # Abhängige Variable mit einer linearen Beziehung zu x
 
 # Erstelle einen DataFrame für die Daten
 data <- data.frame(x = x, y = y)
 
-# Speichern der Trainingsdaten ohne die Zielvariable 'y' in einer CSV-Datei
+# Speichern der Trainingsdaten mit nur der unabhängigen Variablen 'x' in einer CSV-Datei
 data_no_target <- data[, !names(data) %in% "y"]  # Entferne die Zielvariable 'y'
-write.csv(data_no_target, "models/generated_data.csv", row.names = FALSE)
+write.csv(data_no_target, "models/generated_data.csv", row.names = FALSE)  # Nur x wird gespeichert
 
 # Random Forest Modell anstelle eines lm-Modells
 # So behältst du die lineare Struktur und kannst xgrove nutzen

@@ -3,7 +3,7 @@
  <Header copyright="Copyright (c) 2024 jjacq" description="Random Forest Tree Model">
   <Extension name="user" value="jjacq" extender="SoftwareAG PMML Generator"/>
   <Application name="SoftwareAG PMML Generator" version="2.5.2"/>
-  <Timestamp>2024-11-07 11:01:33.997116</Timestamp>
+  <Timestamp>2024-11-07 17:05:15.980704</Timestamp>
  </Header>
  <DataDictionary numberOfFields="2">
   <DataField name="y" optype="continuous" dataType="double"/>
@@ -27,11 +27,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.407627424645">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8184347133781245"/>
+      <Node id="2" score="105.211628603245">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.6397883661600545"/>
       </Node>
-      <Node id="3" score="144.8476743308">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8184347133781245"/>
+      <Node id="3" score="141.211166644645">
+       <SimplePredicate field="x" operator="greaterThan" value="48.6397883661600545"/>
       </Node>
      </Node>
     </TreeModel>
@@ -45,11 +45,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.056485644568">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9718131763459468"/>
+      <Node id="2" score="106.709528991481">
+       <SimplePredicate field="x" operator="lessOrEqual" value="50.1985499157520181"/>
       </Node>
-      <Node id="3" score="142.055036646426">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9718131763459468"/>
+      <Node id="3" score="146.512786095091">
+       <SimplePredicate field="x" operator="greaterThan" value="50.1985499157520181"/>
       </Node>
      </Node>
     </TreeModel>
@@ -63,11 +63,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.05390810034">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9718131763459468"/>
+      <Node id="2" score="110.139977902824">
+       <SimplePredicate field="x" operator="lessOrEqual" value="51.7828679480083665"/>
       </Node>
-      <Node id="3" score="146.539572092691">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9718131763459468"/>
+      <Node id="3" score="148.066768591872">
+       <SimplePredicate field="x" operator="greaterThan" value="51.7828679480083665"/>
       </Node>
      </Node>
     </TreeModel>
@@ -81,11 +81,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="104.980890280833">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.5822345092250316"/>
+      <Node id="2" score="103.903089154893">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="143.590413137237">
-       <SimplePredicate field="x" operator="greaterThan" value="50.5822345092250316"/>
+      <Node id="3" score="143.793176475861">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -99,11 +99,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="113.012336345831">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.3463004136936405"/>
+      <Node id="2" score="111.425849000624">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.2261841823262216"/>
       </Node>
-      <Node id="3" score="149.811458624742">
-       <SimplePredicate field="x" operator="greaterThan" value="52.3463004136936405"/>
+      <Node id="3" score="151.1636907837">
+       <SimplePredicate field="x" operator="greaterThan" value="53.2261841823262216"/>
       </Node>
      </Node>
     </TreeModel>
@@ -117,11 +117,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="103.39625262968">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.5822345092250316"/>
+      <Node id="2" score="104.813211249906">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.922384243893184"/>
       </Node>
-      <Node id="3" score="144.354648505928">
-       <SimplePredicate field="x" operator="greaterThan" value="50.5822345092250316"/>
+      <Node id="3" score="141.153992117384">
+       <SimplePredicate field="x" operator="greaterThan" value="48.922384243893184"/>
       </Node>
      </Node>
     </TreeModel>
@@ -135,11 +135,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="114.005025700465">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.3463004136936405"/>
+      <Node id="2" score="113.083515791516">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.1520616277009736"/>
       </Node>
-      <Node id="3" score="147.993169860512">
-       <SimplePredicate field="x" operator="greaterThan" value="52.3463004136936405"/>
+      <Node id="3" score="152.876010037234">
+       <SimplePredicate field="x" operator="greaterThan" value="54.1520616277009736"/>
       </Node>
      </Node>
     </TreeModel>
@@ -153,11 +153,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.996417503946">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.1726847989486657"/>
+      <Node id="2" score="112.724997015921">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="147.640122761151">
-       <SimplePredicate field="x" operator="greaterThan" value="51.1726847989486657"/>
+      <Node id="3" score="151.404690651491">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -171,11 +171,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.617706198212">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.5822345092250316"/>
+      <Node id="2" score="105.188065777222">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9857092947798449"/>
       </Node>
-      <Node id="3" score="142.370073079319">
-       <SimplePredicate field="x" operator="greaterThan" value="50.5822345092250316"/>
+      <Node id="3" score="143.339406051568">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9857092947798449"/>
       </Node>
      </Node>
     </TreeModel>
@@ -189,11 +189,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.173674224183">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.4133042649873033"/>
+      <Node id="2" score="109.181618043283">
+       <SimplePredicate field="x" operator="lessOrEqual" value="51.7476454857154806"/>
       </Node>
-      <Node id="3" score="146.591115622186">
-       <SimplePredicate field="x" operator="greaterThan" value="51.4133042649873033"/>
+      <Node id="3" score="149.149251250381">
+       <SimplePredicate field="x" operator="greaterThan" value="51.7476454857154806"/>
       </Node>
      </Node>
     </TreeModel>
@@ -207,11 +207,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="103.866795021865">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="114.845835868669">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.7318809244704028"/>
       </Node>
-      <Node id="3" score="141.732906492458">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="155.068901805234">
+       <SimplePredicate field="x" operator="greaterThan" value="54.7318809244704028"/>
       </Node>
      </Node>
     </TreeModel>
@@ -225,11 +225,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.250779578698">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.5529560745504796"/>
+      <Node id="2" score="101.390025457053">
+       <SimplePredicate field="x" operator="lessOrEqual" value="47.6401003597921289"/>
       </Node>
-      <Node id="3" score="144.482171093441">
-       <SimplePredicate field="x" operator="greaterThan" value="51.5529560745504796"/>
+      <Node id="3" score="139.572020472417">
+       <SimplePredicate field="x" operator="greaterThan" value="47.6401003597921289"/>
       </Node>
      </Node>
     </TreeModel>
@@ -243,11 +243,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.127600994868">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.5529560745504796"/>
+      <Node id="2" score="104.487220155578">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9857092947798449"/>
       </Node>
-      <Node id="3" score="147.92390679575">
-       <SimplePredicate field="x" operator="greaterThan" value="51.5529560745504796"/>
+      <Node id="3" score="143.759292801283">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9857092947798449"/>
       </Node>
      </Node>
     </TreeModel>
@@ -261,11 +261,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.983904491373">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.5529560745504796"/>
+      <Node id="2" score="110.388783346182">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="150.076991725861">
-       <SimplePredicate field="x" operator="greaterThan" value="51.5529560745504796"/>
+      <Node id="3" score="150.613487821247">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -279,11 +279,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="103.904322977734">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.2590593558686294"/>
+      <Node id="2" score="103.466576042996">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="148.447443340321">
-       <SimplePredicate field="x" operator="greaterThan" value="51.2590593558686294"/>
+      <Node id="3" score="143.660235055451">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -297,11 +297,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="103.363049395269">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="115.45263144225">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.6852474214591524"/>
       </Node>
-      <Node id="3" score="141.185258449761">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="155.015054161311">
+       <SimplePredicate field="x" operator="greaterThan" value="54.6852474214591524"/>
       </Node>
      </Node>
     </TreeModel>
@@ -315,11 +315,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.001277891418">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="104.212569515684">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.789193661959807"/>
       </Node>
-      <Node id="3" score="140.636308789525">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="143.05618802462">
+       <SimplePredicate field="x" operator="greaterThan" value="48.789193661959807"/>
       </Node>
      </Node>
     </TreeModel>
@@ -333,11 +333,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.81819495891">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.0334581591563534"/>
+      <Node id="2" score="114.441903521822">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.1520616277009736"/>
       </Node>
-      <Node id="3" score="148.861278323655">
-       <SimplePredicate field="x" operator="greaterThan" value="52.0334581591563534"/>
+      <Node id="3" score="152.166637802737">
+       <SimplePredicate field="x" operator="greaterThan" value="54.1520616277009736"/>
       </Node>
      </Node>
     </TreeModel>
@@ -351,11 +351,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.30093439671">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="111.008752473401">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.8009545533268607"/>
       </Node>
-      <Node id="3" score="144.034718293437">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="150.356363949414">
+       <SimplePredicate field="x" operator="greaterThan" value="52.8009545533268607"/>
       </Node>
      </Node>
     </TreeModel>
@@ -369,11 +369,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.281579942084">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.4133042649873033"/>
+      <Node id="2" score="111.461303778787">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="145.746812355857">
-       <SimplePredicate field="x" operator="greaterThan" value="51.4133042649873033"/>
+      <Node id="3" score="150.524909734095">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -387,11 +387,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.401956536271">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.6733829879283277"/>
+      <Node id="2" score="113.518115777372">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="146.484135288104">
-       <SimplePredicate field="x" operator="greaterThan" value="51.6733829879283277"/>
+      <Node id="3" score="150.812375038551">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -405,11 +405,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.314606736239">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8184347133781245"/>
+      <Node id="2" score="106.518425825394">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.2266142370228579"/>
       </Node>
-      <Node id="3" score="144.343063546079">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8184347133781245"/>
+      <Node id="3" score="141.908643863235">
+       <SimplePredicate field="x" operator="greaterThan" value="49.2266142370228579"/>
       </Node>
      </Node>
     </TreeModel>
@@ -423,11 +423,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.086480274043">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="108.806319991786">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.0110537453237498"/>
       </Node>
-      <Node id="3" score="141.330530880656">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="149.346311010432">
+       <SimplePredicate field="x" operator="greaterThan" value="52.0110537453237498"/>
       </Node>
      </Node>
     </TreeModel>
@@ -441,11 +441,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="104.676392427102">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9059555368484808"/>
+      <Node id="2" score="104.976180867879">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.789193661959807"/>
       </Node>
-      <Node id="3" score="147.982760317173">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9059555368484808"/>
+      <Node id="3" score="141.289880538994">
+       <SimplePredicate field="x" operator="greaterThan" value="48.789193661959807"/>
       </Node>
      </Node>
     </TreeModel>
@@ -459,11 +459,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.011446734362">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.5529560745504796"/>
+      <Node id="2" score="105.669220298863">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.4520495469501"/>
       </Node>
-      <Node id="3" score="142.625439198197">
-       <SimplePredicate field="x" operator="greaterThan" value="51.5529560745504796"/>
+      <Node id="3" score="144.042705007313">
+       <SimplePredicate field="x" operator="greaterThan" value="49.4520495469501"/>
       </Node>
      </Node>
     </TreeModel>
@@ -477,11 +477,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.862273138432">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.1726847989486657"/>
+      <Node id="2" score="105.530185671927">
+       <SimplePredicate field="x" operator="lessOrEqual" value="50.0844668656038721"/>
       </Node>
-      <Node id="3" score="150.105723598613">
-       <SimplePredicate field="x" operator="greaterThan" value="51.1726847989486657"/>
+      <Node id="3" score="143.545392063443">
+       <SimplePredicate field="x" operator="greaterThan" value="50.0844668656038721"/>
       </Node>
      </Node>
     </TreeModel>
@@ -495,11 +495,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="103.973581918679">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.440420890897343"/>
+      <Node id="2" score="105.451252166975">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="141.353278001932">
-       <SimplePredicate field="x" operator="greaterThan" value="49.440420890897343"/>
+      <Node id="3" score="143.58077324268">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -513,11 +513,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.913549556379">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.3463004136936405"/>
+      <Node id="2" score="104.824252648139">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.2756794736996113"/>
       </Node>
-      <Node id="3" score="148.317151211093">
-       <SimplePredicate field="x" operator="greaterThan" value="52.3463004136936405"/>
+      <Node id="3" score="143.828809595441">
+       <SimplePredicate field="x" operator="greaterThan" value="49.2756794736996113"/>
       </Node>
      </Node>
     </TreeModel>
@@ -531,11 +531,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="113.752895628907">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.8525684951356851"/>
+      <Node id="2" score="104.758289530569">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="150.313287418115">
-       <SimplePredicate field="x" operator="greaterThan" value="52.8525684951356851"/>
+      <Node id="3" score="142.102643371416">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -549,11 +549,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.990497463983">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9059555368484808"/>
+      <Node id="2" score="109.169747867928">
+       <SimplePredicate field="x" operator="lessOrEqual" value="51.7143404202295613"/>
       </Node>
-      <Node id="3" score="143.00221413113">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9059555368484808"/>
+      <Node id="3" score="146.627157012065">
+       <SimplePredicate field="x" operator="greaterThan" value="51.7143404202295613"/>
       </Node>
      </Node>
     </TreeModel>
@@ -567,11 +567,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.053064865211">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.8400973513619334"/>
+      <Node id="2" score="104.05190863294">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="148.844735675363">
-       <SimplePredicate field="x" operator="greaterThan" value="51.8400973513619334"/>
+      <Node id="3" score="142.91228961262">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -585,11 +585,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.17241143078">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="111.266365128868">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.2082996120105918"/>
       </Node>
-      <Node id="3" score="147.485000803969">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="149.997824220441">
+       <SimplePredicate field="x" operator="greaterThan" value="53.2082996120105918"/>
       </Node>
      </Node>
     </TreeModel>
@@ -603,11 +603,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.351714857479">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9718131763459468"/>
+      <Node id="2" score="103.381170163725">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.922384243893184"/>
       </Node>
-      <Node id="3" score="145.436922795811">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9718131763459468"/>
+      <Node id="3" score="142.362221232146">
+       <SimplePredicate field="x" operator="greaterThan" value="48.922384243893184"/>
       </Node>
      </Node>
     </TreeModel>
@@ -621,11 +621,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="114.179312557452">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.5973510507411532"/>
+      <Node id="2" score="104.412301351292">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.789193661959807"/>
       </Node>
-      <Node id="3" score="150.019833265949">
-       <SimplePredicate field="x" operator="greaterThan" value="52.5973510507411532"/>
+      <Node id="3" score="141.872701420145">
+       <SimplePredicate field="x" operator="greaterThan" value="48.789193661959807"/>
       </Node>
      </Node>
     </TreeModel>
@@ -639,11 +639,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.961912697667">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9718131763459468"/>
+      <Node id="2" score="105.1768922131">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9269260958252517"/>
       </Node>
-      <Node id="3" score="147.160738191128">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9718131763459468"/>
+      <Node id="3" score="141.414386607987">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9269260958252517"/>
       </Node>
      </Node>
     </TreeModel>
@@ -657,11 +657,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="117.191076497429">
-       <SimplePredicate field="x" operator="lessOrEqual" value="54.1361783603543287"/>
+      <Node id="2" score="112.364554955541">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.5313666103092345"/>
       </Node>
-      <Node id="3" score="153.724881170754">
-       <SimplePredicate field="x" operator="greaterThan" value="54.1361783603543287"/>
+      <Node id="3" score="155.796551245553">
+       <SimplePredicate field="x" operator="greaterThan" value="54.5313666103092345"/>
       </Node>
      </Node>
     </TreeModel>
@@ -675,11 +675,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.591851263224">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.4133042649873033"/>
+      <Node id="2" score="113.384229136636">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.4564637394640769"/>
       </Node>
-      <Node id="3" score="144.526189817018">
-       <SimplePredicate field="x" operator="greaterThan" value="51.4133042649873033"/>
+      <Node id="3" score="154.696945731461">
+       <SimplePredicate field="x" operator="greaterThan" value="54.4564637394640769"/>
       </Node>
      </Node>
     </TreeModel>
@@ -693,11 +693,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="105.989854693006">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="111.805379629865">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.2291981371097904"/>
       </Node>
-      <Node id="3" score="139.977778486329">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="149.786003787353">
+       <SimplePredicate field="x" operator="greaterThan" value="53.2291981371097904"/>
       </Node>
      </Node>
     </TreeModel>
@@ -711,11 +711,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.649015552488">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.2590593558686294"/>
+      <Node id="2" score="112.398675986435">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.8599704128863124"/>
       </Node>
-      <Node id="3" score="147.596142908335">
-       <SimplePredicate field="x" operator="greaterThan" value="51.2590593558686294"/>
+      <Node id="3" score="148.031045349299">
+       <SimplePredicate field="x" operator="greaterThan" value="52.8599704128863124"/>
       </Node>
      </Node>
     </TreeModel>
@@ -729,11 +729,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.686048856495">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.2733665192770687"/>
+      <Node id="2" score="103.604292865894">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.922384243893184"/>
       </Node>
-      <Node id="3" score="148.950083454446">
-       <SimplePredicate field="x" operator="greaterThan" value="52.2733665192770687"/>
+      <Node id="3" score="143.701552966275">
+       <SimplePredicate field="x" operator="greaterThan" value="48.922384243893184"/>
       </Node>
      </Node>
     </TreeModel>
@@ -747,11 +747,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.372415518416">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.1726847989486657"/>
+      <Node id="2" score="104.639314136897">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9857092947798449"/>
       </Node>
-      <Node id="3" score="147.463182077242">
-       <SimplePredicate field="x" operator="greaterThan" value="51.1726847989486657"/>
+      <Node id="3" score="143.80875129496">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9857092947798449"/>
       </Node>
      </Node>
     </TreeModel>
@@ -765,11 +765,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.285773294466">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.4133042649873033"/>
+      <Node id="2" score="103.837294693094">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.6397883661600545"/>
       </Node>
-      <Node id="3" score="146.086655911016">
-       <SimplePredicate field="x" operator="greaterThan" value="51.4133042649873033"/>
+      <Node id="3" score="142.610260229268">
+       <SimplePredicate field="x" operator="greaterThan" value="48.6397883661600545"/>
       </Node>
      </Node>
     </TreeModel>
@@ -783,11 +783,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.193552255854">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.8400973513619334"/>
+      <Node id="2" score="114.542819132936">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.7084819104234583"/>
       </Node>
-      <Node id="3" score="149.893790910954">
-       <SimplePredicate field="x" operator="greaterThan" value="51.8400973513619334"/>
+      <Node id="3" score="154.762440316726">
+       <SimplePredicate field="x" operator="greaterThan" value="54.7084819104234583"/>
       </Node>
      </Node>
     </TreeModel>
@@ -801,11 +801,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.663167709482">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8184347133781245"/>
+      <Node id="2" score="105.448126654996">
+       <SimplePredicate field="x" operator="lessOrEqual" value="50.3951066058200894"/>
       </Node>
-      <Node id="3" score="146.710377291501">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8184347133781245"/>
+      <Node id="3" score="146.421060791273">
+       <SimplePredicate field="x" operator="greaterThan" value="50.3951066058200894"/>
       </Node>
      </Node>
     </TreeModel>
@@ -819,11 +819,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.443592417672">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="102.529014654613">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.6397883661600545"/>
       </Node>
-      <Node id="3" score="145.21210939345">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="142.53880362671">
+       <SimplePredicate field="x" operator="greaterThan" value="48.6397883661600545"/>
       </Node>
      </Node>
     </TreeModel>
@@ -837,11 +837,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.584038684914">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.4133042649873033"/>
+      <Node id="2" score="111.999557303597">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="146.876696904142">
-       <SimplePredicate field="x" operator="greaterThan" value="51.4133042649873033"/>
+      <Node id="3" score="149.837822643693">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -855,11 +855,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.687828927711">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.2590593558686294"/>
+      <Node id="2" score="113.341560864023">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.765723880268169"/>
       </Node>
-      <Node id="3" score="147.089144632971">
-       <SimplePredicate field="x" operator="greaterThan" value="51.2590593558686294"/>
+      <Node id="3" score="156.125921271016">
+       <SimplePredicate field="x" operator="greaterThan" value="54.765723880268169"/>
       </Node>
      </Node>
     </TreeModel>
@@ -873,11 +873,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.017541538239">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.1726847989486657"/>
+      <Node id="2" score="113.328870524677">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.8222523599325342"/>
       </Node>
-      <Node id="3" score="148.573313468008">
-       <SimplePredicate field="x" operator="greaterThan" value="51.1726847989486657"/>
+      <Node id="3" score="152.51558281172">
+       <SimplePredicate field="x" operator="greaterThan" value="53.8222523599325342"/>
       </Node>
      </Node>
     </TreeModel>
@@ -891,11 +891,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="120.499075125543">
-       <SimplePredicate field="x" operator="lessOrEqual" value="58.2968406306600571"/>
+      <Node id="2" score="104.325989287171">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="163.135794546506">
-       <SimplePredicate field="x" operator="greaterThan" value="58.2968406306600571"/>
+      <Node id="3" score="142.836093783199">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -909,11 +909,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.358163995817">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.1726847989486657"/>
+      <Node id="2" score="115.436147247472">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.7318809244704028"/>
       </Node>
-      <Node id="3" score="149.683573562111">
-       <SimplePredicate field="x" operator="greaterThan" value="51.1726847989486657"/>
+      <Node id="3" score="154.333479878091">
+       <SimplePredicate field="x" operator="greaterThan" value="54.7318809244704028"/>
       </Node>
      </Node>
     </TreeModel>
@@ -927,11 +927,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="103.59256327021">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="102.367148033673">
+       <SimplePredicate field="x" operator="lessOrEqual" value="47.8741316056489836"/>
       </Node>
-      <Node id="3" score="145.510719984613">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="141.867144953564">
+       <SimplePredicate field="x" operator="greaterThan" value="47.8741316056489836"/>
       </Node>
      </Node>
     </TreeModel>
@@ -945,11 +945,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.758896774875">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.7261465195245904"/>
+      <Node id="2" score="104.917960332763">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="145.357243317678">
-       <SimplePredicate field="x" operator="greaterThan" value="51.7261465195245904"/>
+      <Node id="3" score="142.866924424925">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -963,11 +963,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.112784401648">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.6733829879283277"/>
+      <Node id="2" score="110.861584868117">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.2161674520845764"/>
       </Node>
-      <Node id="3" score="150.783916067131">
-       <SimplePredicate field="x" operator="greaterThan" value="51.6733829879283277"/>
+      <Node id="3" score="147.891693866549">
+       <SimplePredicate field="x" operator="greaterThan" value="52.2161674520845764"/>
       </Node>
      </Node>
     </TreeModel>
@@ -981,11 +981,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.440988003457">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.4599309784713483"/>
+      <Node id="2" score="110.186442740868">
+       <SimplePredicate field="x" operator="lessOrEqual" value="51.8157533618449122"/>
       </Node>
-      <Node id="3" score="147.598015619079">
-       <SimplePredicate field="x" operator="greaterThan" value="51.4599309784713483"/>
+      <Node id="3" score="147.279865323464">
+       <SimplePredicate field="x" operator="greaterThan" value="51.8157533618449122"/>
       </Node>
      </Node>
     </TreeModel>
@@ -999,11 +999,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="105.003193215413">
-       <SimplePredicate field="x" operator="lessOrEqual" value="48.9959846349211716"/>
+      <Node id="2" score="104.669393037374">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.3226613514340002"/>
       </Node>
-      <Node id="3" score="142.585702716809">
-       <SimplePredicate field="x" operator="greaterThan" value="48.9959846349211716"/>
+      <Node id="3" score="143.56799597804">
+       <SimplePredicate field="x" operator="greaterThan" value="49.3226613514340002"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1017,11 +1017,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.203635624883">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="102.634908363548">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.1327890479218539"/>
       </Node>
-      <Node id="3" score="146.65652181587">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="142.672161918829">
+       <SimplePredicate field="x" operator="greaterThan" value="48.1327890479218539"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1035,11 +1035,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="105.136936335543">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.368802381184274"/>
+      <Node id="2" score="109.905581883962">
+       <SimplePredicate field="x" operator="lessOrEqual" value="51.8157533618449122"/>
       </Node>
-      <Node id="3" score="141.765177575707">
-       <SimplePredicate field="x" operator="greaterThan" value="49.368802381184274"/>
+      <Node id="3" score="147.4086850481">
+       <SimplePredicate field="x" operator="greaterThan" value="51.8157533618449122"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1053,11 +1053,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.904072976037">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9718131763459468"/>
+      <Node id="2" score="113.657705379239">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.8245994194310597"/>
       </Node>
-      <Node id="3" score="144.963573406869">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9718131763459468"/>
+      <Node id="3" score="152.261647299171">
+       <SimplePredicate field="x" operator="greaterThan" value="53.8245994194310597"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1071,11 +1071,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.770693787573">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.4133042649873033"/>
+      <Node id="2" score="103.720281769987">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="146.924966149006">
-       <SimplePredicate field="x" operator="greaterThan" value="51.4133042649873033"/>
+      <Node id="3" score="142.998561488835">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1089,11 +1089,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.735257934176">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.5973510507411532"/>
+      <Node id="2" score="103.104866628269">
+       <SimplePredicate field="x" operator="lessOrEqual" value="47.8528912618646132"/>
       </Node>
-      <Node id="3" score="151.300092156273">
-       <SimplePredicate field="x" operator="greaterThan" value="52.5973510507411532"/>
+      <Node id="3" score="141.453572411465">
+       <SimplePredicate field="x" operator="greaterThan" value="47.8528912618646132"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1107,11 +1107,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.14507558216">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.9605242647397816"/>
+      <Node id="2" score="107.14709873169">
+       <SimplePredicate field="x" operator="lessOrEqual" value="50.4247141596630257"/>
       </Node>
-      <Node id="3" score="149.763775325867">
-       <SimplePredicate field="x" operator="greaterThan" value="51.9605242647397816"/>
+      <Node id="3" score="144.220542327644">
+       <SimplePredicate field="x" operator="greaterThan" value="50.4247141596630257"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1125,11 +1125,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="100.900124553375">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="111.223059900079">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="140.547285837022">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="150.878637406822">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1143,11 +1143,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="104.041786709596">
-       <SimplePredicate field="x" operator="lessOrEqual" value="48.600566873824917"/>
+      <Node id="2" score="112.894738365398">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.7938334210922022"/>
       </Node>
-      <Node id="3" score="142.574078304651">
-       <SimplePredicate field="x" operator="greaterThan" value="48.600566873824917"/>
+      <Node id="3" score="156.814443518968">
+       <SimplePredicate field="x" operator="greaterThan" value="54.7938334210922022"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1161,11 +1161,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.687293122635">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="107.694263053382">
+       <SimplePredicate field="x" operator="lessOrEqual" value="50.1310744721245953"/>
       </Node>
-      <Node id="3" score="139.239872813701">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="144.469986487276">
+       <SimplePredicate field="x" operator="greaterThan" value="50.1310744721245953"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1179,11 +1179,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.928569690271">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.7261465195245904"/>
+      <Node id="2" score="105.193786501226">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.6397883661600545"/>
       </Node>
-      <Node id="3" score="147.172830779909">
-       <SimplePredicate field="x" operator="greaterThan" value="51.7261465195245904"/>
+      <Node id="3" score="141.240291831248">
+       <SimplePredicate field="x" operator="greaterThan" value="48.6397883661600545"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1197,11 +1197,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="104.717515691282">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.368802381184274"/>
+      <Node id="2" score="102.570985915189">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="142.480403190074">
-       <SimplePredicate field="x" operator="greaterThan" value="49.368802381184274"/>
+      <Node id="3" score="141.718225120314">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1215,11 +1215,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.544443226139">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9059555368484808"/>
+      <Node id="2" score="103.645612872141">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9622270514050157"/>
       </Node>
-      <Node id="3" score="143.499463320738">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9059555368484808"/>
+      <Node id="3" score="142.1894521702">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9622270514050157"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1233,11 +1233,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.799980649236">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.368802381184274"/>
+      <Node id="2" score="107.9148174381">
+       <SimplePredicate field="x" operator="lessOrEqual" value="50.1985499157520181"/>
       </Node>
-      <Node id="3" score="140.777576289073">
-       <SimplePredicate field="x" operator="greaterThan" value="49.368802381184274"/>
+      <Node id="3" score="144.01666869178">
+       <SimplePredicate field="x" operator="greaterThan" value="50.1985499157520181"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1251,11 +1251,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.068513695421">
-       <SimplePredicate field="x" operator="lessOrEqual" value="48.9959846349211716"/>
+      <Node id="2" score="106.279245048481">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.2756794736996113"/>
       </Node>
-      <Node id="3" score="142.791863059844">
-       <SimplePredicate field="x" operator="greaterThan" value="48.9959846349211716"/>
+      <Node id="3" score="142.803614163894">
+       <SimplePredicate field="x" operator="greaterThan" value="49.2756794736996113"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1269,11 +1269,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="104.542481908612">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="109.747085628356">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.1848051865248692"/>
       </Node>
-      <Node id="3" score="140.846939719926">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="147.267978390619">
+       <SimplePredicate field="x" operator="greaterThan" value="52.1848051865248692"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1287,11 +1287,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.849405786008">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9059555368484808"/>
+      <Node id="2" score="104.194581927962">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9622270514050157"/>
       </Node>
-      <Node id="3" score="142.379872779892">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9059555368484808"/>
+      <Node id="3" score="143.16671510826">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9622270514050157"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1305,11 +1305,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.069319877006">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.1726847989486657"/>
+      <Node id="2" score="105.081986213886">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9622270514050157"/>
       </Node>
-      <Node id="3" score="147.235928632046">
-       <SimplePredicate field="x" operator="greaterThan" value="51.1726847989486657"/>
+      <Node id="3" score="142.332752779093">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9622270514050157"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1323,11 +1323,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.810213339532">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9059555368484808"/>
+      <Node id="2" score="114.883289222742">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.7423248662212245"/>
       </Node>
-      <Node id="3" score="146.612422955319">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9059555368484808"/>
+      <Node id="3" score="154.370606495629">
+       <SimplePredicate field="x" operator="greaterThan" value="54.7423248662212245"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1341,11 +1341,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="104.027356292852">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="104.69152173827">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9857092947798449"/>
       </Node>
-      <Node id="3" score="144.692710495618">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="143.622772095317">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9857092947798449"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1359,11 +1359,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.3649622761">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.7261465195245904"/>
+      <Node id="2" score="104.826612339582">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.0069382375837677"/>
       </Node>
-      <Node id="3" score="142.047283021718">
-       <SimplePredicate field="x" operator="greaterThan" value="51.7261465195245904"/>
+      <Node id="3" score="142.151993511738">
+       <SimplePredicate field="x" operator="greaterThan" value="49.0069382375837677"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1377,11 +1377,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.514880846165">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9718131763459468"/>
+      <Node id="2" score="106.884850268688">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.5605090894988223"/>
       </Node>
-      <Node id="3" score="145.599825934993">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9718131763459468"/>
+      <Node id="3" score="143.797171630901">
+       <SimplePredicate field="x" operator="greaterThan" value="49.5605090894988223"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1395,11 +1395,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.083143329841">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.3463004136936405"/>
+      <Node id="2" score="112.832358925159">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.8245994194310597"/>
       </Node>
-      <Node id="3" score="148.493103277922">
-       <SimplePredicate field="x" operator="greaterThan" value="52.3463004136936405"/>
+      <Node id="3" score="151.919776683548">
+       <SimplePredicate field="x" operator="greaterThan" value="53.8245994194310597"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1413,11 +1413,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.561449171606">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.1726847989486657"/>
+      <Node id="2" score="110.579041516783">
+       <SimplePredicate field="x" operator="lessOrEqual" value="51.966419565607211"/>
       </Node>
-      <Node id="3" score="146.10378837238">
-       <SimplePredicate field="x" operator="greaterThan" value="51.1726847989486657"/>
+      <Node id="3" score="148.310896358279">
+       <SimplePredicate field="x" operator="greaterThan" value="51.966419565607211"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1431,11 +1431,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.178444713039">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.0334581591563534"/>
+      <Node id="2" score="109.959283949789">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.0110537453237498"/>
       </Node>
-      <Node id="3" score="147.775666573517">
-       <SimplePredicate field="x" operator="greaterThan" value="52.0334581591563534"/>
+      <Node id="3" score="147.524674315898">
+       <SimplePredicate field="x" operator="greaterThan" value="52.0110537453237498"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1449,11 +1449,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.673278275572">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="105.565020388873">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.8575358568643452"/>
       </Node>
-      <Node id="3" score="142.897784425578">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="141.601777140072">
+       <SimplePredicate field="x" operator="greaterThan" value="48.8575358568643452"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1467,11 +1467,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.726616765301">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.3463004136936405"/>
+      <Node id="2" score="104.504842463341">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.922384243893184"/>
       </Node>
-      <Node id="3" score="148.473242927695">
-       <SimplePredicate field="x" operator="greaterThan" value="52.3463004136936405"/>
+      <Node id="3" score="140.995565646173">
+       <SimplePredicate field="x" operator="greaterThan" value="48.922384243893184"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1485,11 +1485,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="105.484770551903">
-       <SimplePredicate field="x" operator="lessOrEqual" value="48.9959846349211716"/>
+      <Node id="2" score="113.996333015521">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.1520616277009736"/>
       </Node>
-      <Node id="3" score="142.053734784114">
-       <SimplePredicate field="x" operator="greaterThan" value="48.9959846349211716"/>
+      <Node id="3" score="153.257118789172">
+       <SimplePredicate field="x" operator="greaterThan" value="54.1520616277009736"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1503,11 +1503,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.148278348738">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.1628094110612608"/>
+      <Node id="2" score="103.71288588446">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.4389872064542857"/>
       </Node>
-      <Node id="3" score="139.825212382621">
-       <SimplePredicate field="x" operator="greaterThan" value="49.1628094110612608"/>
+      <Node id="3" score="141.386014006665">
+       <SimplePredicate field="x" operator="greaterThan" value="48.4389872064542857"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1521,11 +1521,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="114.790095479743">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.4602512455309835"/>
+      <Node id="2" score="105.439194241975">
+       <SimplePredicate field="x" operator="lessOrEqual" value="50.1985499157520181"/>
       </Node>
-      <Node id="3" score="149.148734325667">
-       <SimplePredicate field="x" operator="greaterThan" value="52.4602512455309835"/>
+      <Node id="3" score="146.048208576045">
+       <SimplePredicate field="x" operator="greaterThan" value="50.1985499157520181"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1539,11 +1539,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.141967758054">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.5529560745504796"/>
+      <Node id="2" score="103.623391085774">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.4257496012724289"/>
       </Node>
-      <Node id="3" score="147.126920419461">
-       <SimplePredicate field="x" operator="greaterThan" value="51.5529560745504796"/>
+      <Node id="3" score="143.263022387743">
+       <SimplePredicate field="x" operator="greaterThan" value="49.4257496012724289"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1557,11 +1557,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.285961661132">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.8400973513619334"/>
+      <Node id="2" score="114.455396702238">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.7318809244704028"/>
       </Node>
-      <Node id="3" score="145.743157997927">
-       <SimplePredicate field="x" operator="greaterThan" value="51.8400973513619334"/>
+      <Node id="3" score="154.727479976705">
+       <SimplePredicate field="x" operator="greaterThan" value="54.7318809244704028"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1575,11 +1575,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.228194788374">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.9718131763459468"/>
+      <Node id="2" score="113.813068917674">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.6381866569092196"/>
       </Node>
-      <Node id="3" score="146.944046122621">
-       <SimplePredicate field="x" operator="greaterThan" value="50.9718131763459468"/>
+      <Node id="3" score="155.89738684855">
+       <SimplePredicate field="x" operator="greaterThan" value="54.6381866569092196"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1593,11 +1593,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.019450425397">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.5529560745504796"/>
+      <Node id="2" score="102.443137947092">
+       <SimplePredicate field="x" operator="lessOrEqual" value="47.7202576242872638"/>
       </Node>
-      <Node id="3" score="148.200064020366">
-       <SimplePredicate field="x" operator="greaterThan" value="51.5529560745504796"/>
+      <Node id="3" score="142.638044848251">
+       <SimplePredicate field="x" operator="greaterThan" value="47.7202576242872638"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1611,11 +1611,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="112.897489538297">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.1731099687195297"/>
+      <Node id="2" score="104.318459099266">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="150.937027526516">
-       <SimplePredicate field="x" operator="greaterThan" value="52.1731099687195297"/>
+      <Node id="3" score="142.454979016276">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1629,11 +1629,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="106.801277412107">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="104.934943796038">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="148.755045902441">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="142.760519482847">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1647,11 +1647,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="108.64044279441">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.6733829879283277"/>
+      <Node id="2" score="113.71103522085">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.1520616277009736"/>
       </Node>
-      <Node id="3" score="151.270969269594">
-       <SimplePredicate field="x" operator="greaterThan" value="51.6733829879283277"/>
+      <Node id="3" score="152.380483958811">
+       <SimplePredicate field="x" operator="greaterThan" value="54.1520616277009736"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1665,11 +1665,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.388644150108">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.0334581591563534"/>
+      <Node id="2" score="105.177069114604">
+       <SimplePredicate field="x" operator="lessOrEqual" value="48.9028796842205367"/>
       </Node>
-      <Node id="3" score="149.714314749158">
-       <SimplePredicate field="x" operator="greaterThan" value="52.0334581591563534"/>
+      <Node id="3" score="140.074689695966">
+       <SimplePredicate field="x" operator="greaterThan" value="48.9028796842205367"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1683,11 +1683,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.778355954061">
-       <SimplePredicate field="x" operator="lessOrEqual" value="51.7261465195245904"/>
+      <Node id="2" score="114.700697123387">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.6852474214591524"/>
       </Node>
-      <Node id="3" score="144.949291489749">
-       <SimplePredicate field="x" operator="greaterThan" value="51.7261465195245904"/>
+      <Node id="3" score="154.253171246086">
+       <SimplePredicate field="x" operator="greaterThan" value="54.6852474214591524"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1701,11 +1701,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="111.280982485311">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.5973510507411532"/>
+      <Node id="2" score="112.938537479448">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="149.011727196893">
-       <SimplePredicate field="x" operator="greaterThan" value="52.5973510507411532"/>
+      <Node id="3" score="150.549805988056">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1719,11 +1719,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="122.769401407049">
-       <SimplePredicate field="x" operator="lessOrEqual" value="57.4066050995000197"/>
+      <Node id="2" score="112.841159854307">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.8283302555477832"/>
       </Node>
-      <Node id="3" score="157.352304527972">
-       <SimplePredicate field="x" operator="greaterThan" value="57.4066050995000197"/>
+      <Node id="3" score="152.738112861794">
+       <SimplePredicate field="x" operator="greaterThan" value="53.8283302555477832"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1737,11 +1737,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="107.492541831833">
-       <SimplePredicate field="x" operator="lessOrEqual" value="49.2735961147572468"/>
+      <Node id="2" score="110.500682962978">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.8009545533268607"/>
       </Node>
-      <Node id="3" score="140.969875046507">
-       <SimplePredicate field="x" operator="greaterThan" value="49.2735961147572468"/>
+      <Node id="3" score="150.875602630651">
+       <SimplePredicate field="x" operator="greaterThan" value="52.8009545533268607"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1755,11 +1755,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="113.606648283505">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.3463004136936405"/>
+      <Node id="2" score="104.52108064394">
+       <SimplePredicate field="x" operator="lessOrEqual" value="49.4520495469501"/>
       </Node>
-      <Node id="3" score="150.94698256593">
-       <SimplePredicate field="x" operator="greaterThan" value="52.3463004136936405"/>
+      <Node id="3" score="145.14705441542">
+       <SimplePredicate field="x" operator="greaterThan" value="49.4520495469501"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1773,11 +1773,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="110.935511189488">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="109.666336642015">
+       <SimplePredicate field="x" operator="lessOrEqual" value="52.3300170145802923"/>
       </Node>
-      <Node id="3" score="146.871680305884">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="150.147688549323">
+       <SimplePredicate field="x" operator="greaterThan" value="52.3300170145802923"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1791,11 +1791,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.690050252114">
-       <SimplePredicate field="x" operator="lessOrEqual" value="50.8842923528755904"/>
+      <Node id="2" score="111.150840003949">
+       <SimplePredicate field="x" operator="lessOrEqual" value="53.1918100383382111"/>
       </Node>
-      <Node id="3" score="144.812325716636">
-       <SimplePredicate field="x" operator="greaterThan" value="50.8842923528755904"/>
+      <Node id="3" score="151.75469867244">
+       <SimplePredicate field="x" operator="greaterThan" value="53.1918100383382111"/>
       </Node>
      </Node>
     </TreeModel>
@@ -1809,11 +1809,11 @@
      </MiningSchema>
      <Node id="1">
       <True/>
-      <Node id="2" score="109.475893161497">
-       <SimplePredicate field="x" operator="lessOrEqual" value="52.0334581591563534"/>
+      <Node id="2" score="115.092670391772">
+       <SimplePredicate field="x" operator="lessOrEqual" value="54.7318809244704028"/>
       </Node>
-      <Node id="3" score="151.049648944025">
-       <SimplePredicate field="x" operator="greaterThan" value="52.0334581591563534"/>
+      <Node id="3" score="153.672507839959">
+       <SimplePredicate field="x" operator="greaterThan" value="54.7318809244704028"/>
       </Node>
      </Node>
     </TreeModel>
