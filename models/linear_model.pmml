@@ -3,25 +3,25 @@
  <Header copyright="Copyright (c) 2024 jjacq" description="Linear Regression Model">
   <Extension name="user" value="jjacq" extender="SoftwareAG PMML Generator"/>
   <Application name="SoftwareAG PMML Generator" version="2.5.2"/>
-  <Timestamp>2024-11-09 11:20:25.304738</Timestamp>
+  <Timestamp>2024-12-06 11:02:26.398756</Timestamp>
  </Header>
  <DataDictionary numberOfFields="3">
-  <DataField name=".outcome" optype="continuous" dataType="double"/>
+  <DataField name="Target" optype="continuous" dataType="double"/>
   <DataField name="Feature1" optype="continuous" dataType="double"/>
   <DataField name="Feature2" optype="continuous" dataType="double"/>
  </DataDictionary>
  <RegressionModel modelName="lm_Model" functionName="regression" algorithmName="least squares">
   <MiningSchema>
-   <MiningField name=".outcome" usageType="predicted" invalidValueTreatment="returnInvalid"/>
+   <MiningField name="Target" usageType="predicted" invalidValueTreatment="returnInvalid"/>
    <MiningField name="Feature1" usageType="active" invalidValueTreatment="returnInvalid"/>
    <MiningField name="Feature2" usageType="active" invalidValueTreatment="returnInvalid"/>
   </MiningSchema>
   <Output>
-   <OutputField name="Predicted_.outcome" optype="continuous" dataType="double" feature="predictedValue"/>
+   <OutputField name="Predicted_Target" optype="continuous" dataType="double" feature="predictedValue"/>
   </Output>
-  <RegressionTable intercept="0.135065430791328">
-   <NumericPredictor name="Feature1" exponent="1" coefficient="-0.133171528319216"/>
-   <NumericPredictor name="Feature2" exponent="1" coefficient="0.0238112878797974"/>
+  <RegressionTable intercept="46.881701890821">
+   <NumericPredictor name="Feature1" exponent="1" coefficient="0.0731374692096246"/>
+   <NumericPredictor name="Feature2" exponent="1" coefficient="-0.0215981807988218"/>
   </RegressionTable>
  </RegressionModel>
 </PMML>

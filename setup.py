@@ -3,7 +3,7 @@ from pathlib import Path
 import codecs
 import os
 
-VERSION = '0.3.14'
+VERSION = '0.4.3'
 DESCRIPTION = 'creating and calculating groves of tree models'
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text(encoding='utf-8')
@@ -23,7 +23,6 @@ setup(
         "numpy>=1.19.2",
         "matplotlib>=3.3.2",
         "pandas>=1.1.3",
-        "graphviz>=0.16",
         "statistics",  # Python eingebautes Modul, kein externes Package
         # Überprüfen, ob eventuell zusätzliche Module benötigt werden, die hier nicht explizit genannt wurden
     ],
